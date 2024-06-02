@@ -8,17 +8,18 @@ package myAdapter;
  * to add, remove, and modify elements in a list.
  * </p>
  * 
+ * @param <T> the type of elements in the list
  * @see HIterator
  * @since Java Unit 4
  */
-public interface HListIterator extends HIterator {
+public interface HListIterator<T> extends HIterator<T> {
     
     /**
      * Inserts the specified element into the list.
      * 
      * @param o the element to be added
      */
-    public void add(Object o);
+    public void add(T o);
     
     /**
      * Returns true if this list iterator has a previous element.
@@ -39,7 +40,7 @@ public interface HListIterator extends HIterator {
      * 
      * @return the previous element in the list
      */
-    public Object previous();
+    public T previous();
     
     /**
      * Returns the index of the previous element.
@@ -49,17 +50,12 @@ public interface HListIterator extends HIterator {
     public int previousIndex();
     
     /**
-     * Replaces the last element returned by {@link #next()} or {@link #previous()} with the specified element.
-     * 
-     * @param o the element to be set
-     */
-    /**
      * Replaces the last element returned by the most recent call to {@link #next} or {@link #previous} with the specified element.
      * This method can be called only after a call to {@link #next} or {@link #previous} has been made, but not after a call to {@link #remove} or {@link #add}.
      *
      * @param o the element to be set
      * @throws IllegalStateException if neither {@link #next} nor {@link #previous} have been called, or {@link #remove} or {@link #add} have been called after the last call to {@link #next} or {@link #previous}
      */
-    public void set(Object o);
+    public void set(T o);
     
 }
