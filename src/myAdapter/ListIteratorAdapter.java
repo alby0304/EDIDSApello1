@@ -1,99 +1,27 @@
-/* package myAdapter;
-
-import java.lang.ClassCastException;
-import java.util.NoSuchElementException;
-
-public class ListIteratorAdapter implements HListIterator {
-
-    private CollectionAdapter v; // ????
-    private int position;
-
-    // Costruttori
-    public ListIteratorAdapter() {
-        v = new CollectionAdapter(); // Giusto o ListAdapter???
-        position = 0;
-    }
-
-    public ListIteratorAdapter(CollectionAdapter o) {
-        this.v = o;
-        position = 0;
-    }
-
-    public ListIteratorAdapter(CollectionAdapter o, int index) { // TODO: Posizione argomenti
-        this.v = o;
-        position = index;
-    }
-
-    
-    //HListIterator
-    public void add(Object o){
- 
-
-        return position > 0; 
- 
-
-    public int nextIndex() {
-        return position + 1;
-    }
-    public Object previous() {
-
- 
-    }
-    public int previousIndex() {
-        return position - 1;
-    }
-    public void set(Object o) {
-        throw new UnsupportedOperationException();
-    }
-}
-
-
-class IteratorAdapter implements HIterator{
-
-    //Hiterator
-    public boolean hasNext() {
-        if(position < v.size())
-            return true;
-        return false;
-    }
-    public Object next() {
-        try {
-            if (!hasNext()) {
-                throw new NoSuchElementException("No more elements");
-            }
-            return v.get(position++); //TODO: get(index) da implementare in ListAdapter
-        } catch (Exception e) {
-            System.out.println("Eccezione: " + e); //Errorre
-            throw new NoSuchElementException();
-        }
-    }
-    public void remove() { //TODO: da implementare remove(index) in ListAdapter
-        throw new UnsupportedOperationException();//TODO: NON presente in CDLC 1.1
-        //throw new IllegalStateException();
-    }
-} */
-
 package myAdapter;
 
 import java.util.NoSuchElementException;
 
-public class ListIteratorAdapter<T> implements HListIterator<T> {
+public class ListIteratorAdapter<T> extends IteratorAdapter<T> implements HListIterator<T> {
 
     private ListAdapter<T> v;
     private int position;
 
     // Costruttori
     public ListIteratorAdapter() {
+        super(); // Explicitly invoke the constructor of the IteratorAdapter class.
         v = new ListAdapter<>();
         position = 0;
     }
 
     public ListIteratorAdapter(ListAdapter<T> o) {
+        super(o); // Explicitly invoke the constructor of the IteratorAdapter class.
         this.v = o;
         position = 0;
     }
 
     public ListIteratorAdapter(ListAdapter<T> o, int index) {
+        super(o, index); // Explicitly invoke the constructor of the IteratorAdapter class.
         this.v = o;
         position = index;
     }
@@ -152,12 +80,21 @@ public class ListIteratorAdapter<T> implements HListIterator<T> {
 
 class IteratorAdapter<T> implements HIterator<T> {
 
-    private ListAdapter<T> v;
+    private CollectionAdapter<T> v;
     private int position;
+    public IteratorAdapter() {
+        this.v = new CollectionAdapter<>();
+        this.position = 0;
+    }
 
-    public IteratorAdapter(ListAdapter<T> v) {
+    public IteratorAdapter(CollectionAdapter<T> v) {
         this.v = v;
         this.position = 0;
+    }
+
+    public IteratorAdapter(CollectionAdapter<T> v, int index) {
+        this.v = v;
+        this.position = index;
     }
 
     // HIterator
@@ -166,10 +103,11 @@ class IteratorAdapter<T> implements HIterator<T> {
     }
 
     public T next() {
-        if (!hasNext()) {
-            throw new NoSuchElementException("No more elements");
-        }
-        return v.get(position++);
+        throw new UnsupportedOperationException();
+        // if (!hasNext()) {
+        //     throw new NoSuchElementException("No more elements");
+        // }
+        // return v.get(position++);
     }
 
     public void remove() {

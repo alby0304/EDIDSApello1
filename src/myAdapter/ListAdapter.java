@@ -1,7 +1,7 @@
-package myAdapter;
+/*package myAdapter;
 import java.util.Vector;
 
-public class ListAdapter extends CollectionAdapter implements HList{
+public class ListAdapter<T> extends CollectionAdapter implements HList{
 
     CollectionAdapter c;
 
@@ -14,7 +14,7 @@ public class ListAdapter extends CollectionAdapter implements HList{
 
 }
 
-class CollectionAdapter implements HCollection{
+class CollectionAdapter<T> implements HCollection{
     private Vector v;
     private HIterator it;
 
@@ -68,24 +68,25 @@ class CollectionAdapter implements HCollection{
     }
 }
 
-/*
- * package myAdapter;
+*/
+package myAdapter;
 
 import java.util.Vector;
 
 public class ListAdapter<T> extends CollectionAdapter<T> implements HList<T> {
 
-    CollectionAdapter<T> c;
+    private CollectionAdapter<T> c;
+    private ListIteratorAdapter<T> it;
 
     public ListAdapter() {
-        c = new CollectionAdapter<>();
+        this.c = new CollectionAdapter<>();
+        it = new ListIteratorAdapter<>(this);
     }
-
-    public ListAdapter(CollectionAdapter<T> o) {
-        this.c = o;
+    public ListAdapter(HCollection<? extends T> c) {
+        this.c = new CollectionAdapter<>(c);
+        it = new ListIteratorAdapter<>(this);
     }
-
-    // Implement HList methods here if needed
+    
 }
 
 class CollectionAdapter<T> implements HCollection<T> {
@@ -96,9 +97,9 @@ class CollectionAdapter<T> implements HCollection<T> {
         v = new Vector<>();
     }
 
-    public CollectionAdapter(HCollection<? extends T> o) {
+    public CollectionAdapter(HCollection<? extends T> c) {
         this();
-        addAll(o);
+        addAll(c);
     }
 
     // HCollection
@@ -106,20 +107,27 @@ class CollectionAdapter<T> implements HCollection<T> {
         return it;
     }
 
-    public boolean add(T o) {
-        if (o == null) {
+    public boolean add(T c) {
+        if (c == null) {
             throw new NullPointerException();
         }
-        if (!v.isEmpty() && !v.firstElement().getClass().isInstance(o)) {
+        if (!v.isEmpty() && !v.firstElement().getClass().isInstance(c)) {
             throw new ClassCastException();
         }
-
-        v.add(o);
+        v.addElement(c);
         return true;
     }
 
+    public boolean addAll(HCollection<? extends T> c){
+        boolean modified = false;
+        for (T item : c.toArray()) {
+            modified |= add(item);
+        }
+        return modified;
+    }
+
     public void clear() {
-        v.clear();
+        v.removeAllElements();
     }
 
     public boolean contains(Object o) {
@@ -128,7 +136,7 @@ class CollectionAdapter<T> implements HCollection<T> {
 
     public boolean containsAll(HCollection<?> c) {
         for (Object item : c.toArray()) {
-            if (!v.contains(item)) {
+            if (!contains(item)) {
                 return false;
             }
         }
@@ -140,13 +148,13 @@ class CollectionAdapter<T> implements HCollection<T> {
     }
 
     public boolean remove(Object o) {
-        return v.remove(o);
+        return v.removeElement(o);
     }
 
     public boolean removeAll(HCollection<?> c) {
         boolean modified = false;
         for (Object item : c.toArray()) {
-            modified |= v.remove(item);
+            modified |= remove(item);
         }
         return modified;
     }
@@ -154,7 +162,7 @@ class CollectionAdapter<T> implements HCollection<T> {
     public boolean retainAll(HCollection<?> c) {
         boolean modified = false;
         for (int i = 0; i < v.size(); i++) {
-            if (!c.contains(v.get(i))) {
+            if (!c.contains(v.elementAt(i))) {
                 v.remove(i);
                 i--;
                 modified = true;
@@ -167,58 +175,104 @@ class CollectionAdapter<T> implements HCollection<T> {
         return v.size();
     }
 
+    //private T[] vet;
     public T[] toArray() {
-        return (T[]) v.toArray();
+        T[] tmp = (T[]) new Object[v.size()];
+        for(int i =0 ; i< v.size();i++)
+        {
+            tmp[i] = v.elementAt(i);
+        }
+
+        return tmp;
+        //v.copyInto(vet);
+        //return vet;
     }
 
     public <E> E[] toArray(E[] a) {
-        return v.toArray(a);
+        a = (E[]) toArray();
+        return a;
+    }
+
+}
+/*
+public T[] toArray() {
+        // Supponiamo che il tipo di array restituito sia Object[]
+        T[] array = (T[]) new Object[v.size()];  // Creazione dell'array di tipo generico
+        for (int i = 0; i < v.size(); i++) {
+            array[i] = v.get(i);  // Copia degli elementi dalla Vector all'array
+        }
+        return array;
+    }
+
+    public <E> E[] toArray(E[] a) {
+        if (a.length < v.size()) {
+            // Creiamo un nuovo array del tipo di runtime di a, con la stessa dimensione di v
+            a = (E[]) java.lang.reflect.Array.newInstance(a.getClass().getComponentType(), v.size());
+        }
+        for (int i = 0; i < v.size(); i++) {
+            a[i] = (E) v.get(i);  // Copia degli elementi dalla Vector all'array
+        }
+        if (a.length > v.size()) {
+            a[v.size()] = null;  // Se l'array è più grande, imposta l'elemento successivo a null
+        }
+        return a;
     }
 
     @Override
     public void remove() {
         try {
-            it = new IteratorAdapter<>();
+            it = new IteratorAdapter<>(this);
         } catch (Exception e) {
             // Handle exception as needed
         }
-        // Add your additional code here
     }
 
     @Override
     public void set(T o) {
         throw new ClassCastException();
-        // throw new IllegalArgumentException(); // This will never be reached due to the previous throw
-        // throw new IllegalStateException(); // This will never be reached due to the previous throw
+    }
+
+*/
+
+/*
+import java.util.Vector;
+
+public class MyClass<T> {
+    private Vector<T> v = new Vector<>();
+
+    // Metodo per aggiungere elementi al Vector
+    public void add(T element) {
+        v.add(element);
+    }
+
+    // Metodo toArray che utilizza un array prototipo
+    @SuppressWarnings("unchecked")
+    public T[] toArray(T[] a) {
+        if (a.length < v.size()) {
+            // Creiamo un nuovo array del tipo corretto se quello passato è troppo piccolo
+            a = (T[]) java.lang.reflect.Array.newInstance(a.getClass().getComponentType(), v.size());
+        }
+        for (int i = 0; i < v.size(); i++) {
+            a[i] = v.elementAt(i);
+        }
+        if (a.length > v.size()) {
+            a[v.size()] = null; // Imposta il primo elemento non utilizzato a null
+        }
+        return a;
+    }
+
+    public static void main(String[] args) {
+        MyClass<String> myClass = new MyClass<>();
+        myClass.add("one");
+        myClass.add("two");
+        myClass.add("three");
+
+        // Creiamo un array di String da passare al metodo toArray
+        String[] array = myClass.toArray(new String[0]);
+        for (String s : array) {
+            System.out.println(s);
+        }
     }
 }
 
-class IteratorAdapter<T> implements HIterator<T> {
-    private int currentIndex;
-    private Vector<T> vector;
-
-    public IteratorAdapter(Vector<T> vector) {
-        this.vector = vector;
-        this.currentIndex = 0;
-    }
-
-    public boolean hasNext() {
-        return currentIndex < vector.size();
-    }
-
-    public T next() {
-        if (!hasNext()) {
-            throw new NoSuchElementException();
-        }
-        return vector.get(currentIndex++);
-    }
-
-    public void remove() {
-        if (currentIndex == 0) {
-            throw new IllegalStateException();
-        }
-        vector.remove(--currentIndex);
-    }
-}
-
- */
+*/
