@@ -40,8 +40,8 @@ public interface HCollection<T> {
     public boolean removeAll(HCollection<?> c);
     public boolean retainAll(HCollection<?> c);
     public int size();
-    public T[] toArray();
-    public <E> E[] toArray(E[] a);
+    public Object[] toArray();
+    public Object[] toArray(Object[] a);
 }
 
 

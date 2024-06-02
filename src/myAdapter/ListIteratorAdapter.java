@@ -104,10 +104,6 @@ class IteratorAdapter<T> implements HIterator<T> {
 
     public T next() {
         throw new UnsupportedOperationException();
-        // if (!hasNext()) {
-        //     throw new NoSuchElementException("No more elements");
-        // }
-        // return v.get(position++);
     }
 
     public void remove() {
@@ -116,6 +112,28 @@ class IteratorAdapter<T> implements HIterator<T> {
         }
         v.remove(position - 1);
         position--;
+    }
+}
+
+class UnsupportedOperationException extends RuntimeException {
+    // Costruttore senza argomenti
+    public UnsupportedOperationException() {
+        super();
+    }
+
+    // Costruttore che accetta un messaggio di errore
+    public UnsupportedOperationException(String message) {
+        super(message);
+    }
+
+    // Costruttore che accetta un messaggio di errore e una causa
+    public UnsupportedOperationException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
+    // Costruttore che accetta una causa
+    public UnsupportedOperationException(Throwable cause) {
+        super(cause);
     }
 }
 
