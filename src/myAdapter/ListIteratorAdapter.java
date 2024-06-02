@@ -14,6 +14,7 @@ public class ListIteratorAdapter<T> extends IteratorAdapter<T> implements HListI
         position = 0;
     }
 
+    //TODO: da sistemare
     public ListIteratorAdapter(ListAdapter<T> o) {
         super(o); // Explicitly invoke the constructor of the IteratorAdapter class.
         this.v = o;
