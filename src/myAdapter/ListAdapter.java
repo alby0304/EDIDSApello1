@@ -282,11 +282,7 @@ public class ListAdapter implements HList{
         boolean modified = false;
         Object[] items = c.toArray();
         for (int i = 0; i < items.length; i++) {
-            try {
-                modified = modified || add(items[i]);
-            } catch (Exception e) {
-                throw new ClassCastException();
-            }
+            modified = modified || add(items[i]);
         }
         return modified;
     }
@@ -296,12 +292,7 @@ public class ListAdapter implements HList{
     }
 
     public boolean contains(Object o) {
-        if (o == null) {
-            throw new NullPointerException();
-        }
-        if (!v.isEmpty() && !v.firstElement().getClass().isInstance(o)) {
-            throw new ClassCastException();
-        }
+        excNullPtrCast(o);
         return v.contains(o);
     }
 
@@ -343,17 +334,20 @@ public class ListAdapter implements HList{
         return v.isEmpty();
     }
 
+    public ListIteratorAdapter iterator()
+    {
+        return it;
+    }
+
     public boolean remove(Object o) {
+        excNullPtrCast(o);
         return v.removeElement(o);
     }
     
-
-
-
-
-
-
     public boolean removeAll(HCollection c) {
+        if (c == null) {
+            throw new NullPointerException();
+        }
         boolean modified = false;
         Object[] items = c.toArray();
         for (int i = 0; i < items.length; i++) {
@@ -363,6 +357,9 @@ public class ListAdapter implements HList{
     }
 
     public boolean retainAll(HCollection c) {
+        if (c == null) {
+            throw new NullPointerException();
+        }
         boolean modified = false;
         for (int i = 0; i < v.size(); i++) {
             if (!c.contains(v.elementAt(i))) {
@@ -387,28 +384,108 @@ public class ListAdapter implements HList{
     }
     
     public Object[] toArray(Object[] a) {
-        if (a[0] == null) {
+        if (a == null) {
             throw new NullPointerException();
+        }
+        Class arrayType = a.getClass();
+        for (int i = 0; i < v.size(); i++) {
+            if (!arrayType.isInstance(v.elementAt(i))) {
+                throw new ArrayStoreException();
+            }
         }
         if (a.length == v.size()) {
             a = toArray();
         } else if (a.length < v.size()) {
             Object[] newArray = new Object[v.size()];
-            newArray = v.toArray();
-            return newArray;
+            newArray = toArray();
+            a = newArray; 
         } else {
-            int i;
-            for (i = 0; i < v.size(); i++) {
-                a[i] = v.elementAt(i);
-            }
-            while (i < a.length) {
-                a[i] = null;
+            for (int i = 0; i < a.length; i++) {
+                if (i < v.size()) {
+                    a[i] = v.elementAt(i);
+                } else {
+                    a[i] = null;
+                }
             }
         }
         return a;
     }
 
-    // Helper methods
+    /*
+     * Implement HList
+     */
+    public void add(int index, Object element) {      
+        excNullPtrCast(element);
+        v.insertElementAt(element, index);//Lancia già IndexOutOfBoundsException
+    }
+
+    public boolean addAll(int index, HCollection c)
+    {
+        if (c == null) {
+            throw new NullPointerException();
+        }
+        if (index < 0 || index > v.size()) {
+            throw new IndexOutOfBoundsException();
+        }
+        Object[] items = c.toArray();
+        for (int i = 0; i < items.length; i++) {
+            add(index + i,items[i]);
+        }
+        return true;
+    }
+    
+    public Object get(int index){
+        return v.elementAt(index);//Lancia già IndexOutOfBoundsException
+    }
+
+    public int indexOf(Object o) {
+        excNullPtrCast(o);
+        return v.indexOf(o); //Lancia già IndexOutOfBoundsException
+    }
+
+    public int lastIndexOf(Object o) {
+        excNullPtrCast(o);
+        return v.lastIndexOf(o); //Lancia già IndexOutOfBoundsException
+    }
+
+    public ListIteratorAdapter listIterator() {
+        return it;
+    }
+
+    public ListIteratorAdapter listIterator(int index) {
+        if (index < 0 || index > v.size()) {
+            throw new IndexOutOfBoundsException();
+        }
+        return new ListIteratorAdapter(this, index);
+    }
+
+    public Object remove(int index) {
+        Object o = get(index);
+        v.removeElementAt(index);//Lancia già IndexOutOfBoundsException 
+        return o;
+    }
+
+    public Object set(int index, Object element) {
+        excNullPtrCast(element);
+        Object o = get(index);
+        v.setElementAt(element,index); //Lancia già IndexOutOfBoundsException
+        return o;
+    }
+
+    public HList subList(int fromIndex, int toIndex) {
+        if (fromIndex < 0 || toIndex > v.size() || fromIndex > toIndex) {
+            throw new IndexOutOfBoundsException();
+        }
+        ListAdapter sub = new ListAdapter();
+        for (int i = fromIndex; i < toIndex; i++) {
+            sub.add(get(i));
+        }
+        return sub;
+    }
+
+     /*
+     * Helper methods
+     */
     private void excNullPtrCast(Object o){
         if (o == null) {
             throw new NullPointerException();

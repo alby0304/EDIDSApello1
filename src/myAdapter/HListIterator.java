@@ -8,7 +8,6 @@ package myAdapter;
  * to add, remove, and modify elements in a list.
  * </p>
  * 
- * @param <T> the type of elements in the list
  * @see HIterator
  * @since Java Unit 4
  */
