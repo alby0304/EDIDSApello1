@@ -12,8 +12,7 @@ public class ListIteratorAdapter implements HListIterator
         l = new ListAdapter();
         index = 0;
     }
-
-    //TODO: da sistemare
+    
     public ListIteratorAdapter(ListAdapter o){
         this.l = o;
         index = 0;
