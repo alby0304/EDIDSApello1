@@ -1,74 +1,4 @@
-/*package myAdapter;
-import java.util.Vector;
-
-public class ListAdapter<T> extends CollectionAdapter implements HList{
-
-    CollectionAdapter c;
-
-    ListAdapter(){
-        c = new CollectionAdapter();
-    }
-    ListAdapter(CollectionAdapter o){
-        this.c = o;
-    }
-
-}
-
-class CollectionAdapter<T> implements HCollection{
-    private Vector v;
-    private HIterator it;
-
-    CollectionAdapter(){
-        v = new Vector();
-    }
-    CollectionAdapter(HCollection o){
-        this.v = o;
-    }
-
-    //HCollection
-    public HIterator iterator()
-    {
-        return it;
-    }
-
-    public boolean add(Object o)
-    {
-        if (o == null)
-        {
-            throw new NullPointerException();
-        }
-        Object firstElement = v.firstElement();
-        if (!(firstElement.getClass().isInstance(o)))
-        {
-            throw new ClassCastException();
-        }
-
-        v.add(o);
-        return true;
-        
-    }
-
-    @Override
-    public void remove() {
-        try {
-            it = new IteratorAdapter();
-        } catch (Exception e) {
-            super.remove();
-        }
-        // Add your additional code here
-    }
-
-    @Override
-    public void set(Object o) {
-        super.set(o);
-        throw new ClassCastException(); 
-        throw new IllegalArgumentException();
-        
-        throw new IllegalStateException();
-    }
-}
-
-*/
+/* 
 package myAdapter;
 
 import java.util.Enumeration;
@@ -243,9 +173,12 @@ class CollectionAdapter<T> implements HCollection<T> {
             T obj = e.nextElement();
             hashCode = 31 * hashCode + (obj == null ? 0 : obj.hashCode());
         }
-        return hashCode;*/
+        return hashCode;
         //TODO: implementare hashCode
     }
+    */
+    /* 
+    
 
     public boolean isEmpty() {
         return v.isEmpty();
@@ -314,3 +247,176 @@ class CollectionAdapter<T> implements HCollection<T> {
     }
 
 }
+*/
+package myAdapter;
+
+import java.util.Vector;
+
+public class ListAdapter implements HList{
+    private Vector v;
+    private ListIteratorAdapter it;
+
+    // Costruttori
+    public ListAdapter() {
+        this.v = new Vector();
+        it = new ListIteratorAdapter(this);
+    }
+    public ListAdapter(HCollection c) {
+        this();
+        addAll(c);
+    }
+
+    /*
+     * Override HColletion
+     */
+    public boolean add(Object o) {
+        excNullPtrCast(o);
+        v.addElement(o);
+        return true;
+    }
+
+    public boolean addAll(HCollection c) {
+        if (c == null) {
+            throw new NullPointerException();
+        }
+        boolean modified = false;
+        Object[] items = c.toArray();
+        for (int i = 0; i < items.length; i++) {
+            try {
+                modified = modified || add(items[i]);
+            } catch (Exception e) {
+                throw new ClassCastException();
+            }
+        }
+        return modified;
+    }
+
+    public void clear() {
+        v.removeAllElements();
+    }
+
+    public boolean contains(Object o) {
+        if (o == null) {
+            throw new NullPointerException();
+        }
+        if (!v.isEmpty() && !v.firstElement().getClass().isInstance(o)) {
+            throw new ClassCastException();
+        }
+        return v.contains(o);
+    }
+
+    public boolean containsAll(HCollection c) {
+        Object[] items = c.toArray();
+        for (int i = 0; i < items.length; i++) {
+            if (!contains(items[i])) {
+            return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+        if (!(o instanceof HCollection)) {
+            return false;
+        }
+        HCollection c = (HCollection) o;
+        if (c.size() != size()) {
+            return false;
+        }
+        return containsAll(c);
+    }
+
+    public int hashCode() {
+        int hashCode = 1;
+        ListIteratorAdapter i = it; //TODO da riguardare
+        while (i.hasNext()) {
+            Object obj = i.next();
+            hashCode = 31*hashCode + (obj==null ? 0 : obj.hashCode());
+        }
+        return hashCode;
+    }
+
+    public boolean isEmpty() {
+        return v.isEmpty();
+    }
+
+    public boolean remove(Object o) {
+        return v.removeElement(o);
+    }
+    
+
+
+
+
+
+
+    public boolean removeAll(HCollection c) {
+        boolean modified = false;
+        Object[] items = c.toArray();
+        for (int i = 0; i < items.length; i++) {
+            modified = modified || remove(items[i]);
+        }
+        return modified;
+    }
+
+    public boolean retainAll(HCollection c) {
+        boolean modified = false;
+        for (int i = 0; i < v.size(); i++) {
+            if (!c.contains(v.elementAt(i))) {
+                v.removeElementAt(i);
+                i--;
+                modified = true;
+            }
+        }
+        return modified;
+    }
+
+    public int size() {
+        return v.size();
+    }
+
+    public Object[] toArray() {
+        Object[] tmp = new Object[v.size()];
+        for (int i = 0; i < v.size(); i++) {
+            tmp[i] = v.elementAt(i);
+        }
+        return tmp;
+    }
+    
+    public Object[] toArray(Object[] a) {
+        if (a[0] == null) {
+            throw new NullPointerException();
+        }
+        if (a.length == v.size()) {
+            a = toArray();
+        } else if (a.length < v.size()) {
+            Object[] newArray = new Object[v.size()];
+            newArray = v.toArray();
+            return newArray;
+        } else {
+            int i;
+            for (i = 0; i < v.size(); i++) {
+                a[i] = v.elementAt(i);
+            }
+            while (i < a.length) {
+                a[i] = null;
+            }
+        }
+        return a;
+    }
+
+    // Helper methods
+    private void excNullPtrCast(Object o){
+        if (o == null) {
+            throw new NullPointerException();
+        }
+        if (!v.isEmpty() && !v.firstElement().getClass().isInstance(o)) {
+            throw new ClassCastException();
+        }
+    }
+
+}
+

@@ -12,14 +12,14 @@ package myAdapter;
  * @see HIterator
  * @since Java Unit 4
  */
-public interface HListIterator<T> extends HIterator<T> {
+public interface HListIterator extends HIterator {
     
     /**
      * Inserts the specified element into the list.
      * 
      * @param o the element to be added
      */
-    public void add(T o);
+    public void add(Object o);
     
     /**
      * Returns true if this list iterator has a previous element.
@@ -40,7 +40,7 @@ public interface HListIterator<T> extends HIterator<T> {
      * 
      * @return the previous element in the list
      */
-    public T previous();
+    public Object previous();
     
     /**
      * Returns the index of the previous element.
@@ -56,6 +56,6 @@ public interface HListIterator<T> extends HIterator<T> {
      * @param o the element to be set
      * @throws IllegalStateException if neither {@link #next} nor {@link #previous} have been called, or {@link #remove} or {@link #add} have been called after the last call to {@link #next} or {@link #previous}
      */
-    public void set(T o);
+    public void set(Object o);
     
 }
