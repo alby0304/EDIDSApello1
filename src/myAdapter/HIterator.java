@@ -1,8 +1,27 @@
 package myAdapter;
 
+/**
+ * Gli iteratori nelle collezioni prendono il posto delle enumerazioni da cui differiscono in due modi:
+ * consentono al chiamante di rimuovere elementi dalla raccolta sottostante durante l'iterazione
+ * i nomi dei metodi vengono migliorati
+ */
 public interface HIterator {
+
+    /**
+     * @return ritorna true se l'iterazione ha più elementi
+     */
     public boolean hasNext();
+
+    /**
+     * @return ritorna l'elemto successivo nell'iterazione 
+     * @throws lancia NoSuchElementException se non ci sono più elementi
+     */
     public Object next();
+
+    /**
+     * rimuove dall'insieme l'ultimo elemento restituito dall'iteratore. Il comportamento dell'iteratore
+     * non è specificato se l'insieme sottostante viene modificato mentre è in corso l'iterazione  
+     */
     public void remove();
     
 }
