@@ -69,6 +69,7 @@ class CollectionAdapter<T> implements HCollection{
 }
 
 */
+/* 
 package myAdapter;
 
 import java.util.Enumeration;
@@ -243,9 +244,12 @@ class CollectionAdapter<T> implements HCollection<T> {
             T obj = e.nextElement();
             hashCode = 31 * hashCode + (obj == null ? 0 : obj.hashCode());
         }
-        return hashCode;*/
+        return hashCode;
         //TODO: implementare hashCode
     }
+    */
+    /* 
+    
 
     public boolean isEmpty() {
         return v.isEmpty();
@@ -312,5 +316,11 @@ class CollectionAdapter<T> implements HCollection<T> {
     protected T get(int index) {
         return v.elementAt(index);
     }
+
+}
+*/
+package myAdapter;
+public class ListAdapter<T> implements HList<T>{
+    
 
 }

@@ -1,5 +1,10 @@
 package myAdapter;
 
+import java.util.ListIterator;
+import java.util.NoSuchElementException;
+import java.util.Vector;
+
+/* 
 import java.util.NoSuchElementException;
 
 public class ListIteratorAdapter<T> extends IteratorAdapter<T> implements HListIterator<T> {
@@ -136,5 +141,42 @@ class UnsupportedOperationException extends RuntimeException {
     public UnsupportedOperationException(Throwable cause) {
         super(cause);
     }
+}
+*/
+
+public class ListIteratorAdapter<T> implements ListIterator<T>
+{
+    private int i = 0;
+    private Vector<T> vet;
+
+    @Override
+    public boolean hasNext()
+    {
+        return i<(vet.size()-1);
+    }
+
+    @Override
+    public T next()
+    {
+        if(!hasNext())
+        {
+            throw  new NoSuchElementException();
+        }
+        return vet.elementAt(i++);
+    }
+
+    @Override
+    public void remove()
+    {
+        vet.removeElementAt(i);
+    }
+
+    @Override
+    public void add(T o)
+    {
+        vet.addElement(o);
+    }
+    
+
 }
 
