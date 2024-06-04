@@ -1,0 +1,179 @@
+==== CONFIGS ====		
+{
+    "base_path": "c:\\Develop\\Unipd\\EDIDS\\test-Tess",
+    "out": "c:\\Develop\\Unipd\\EDIDS\\test-Tess\\javadoc",
+    "javadoc_executable": "C:\\Program Files\\Java\\jdk-22\\bin\\javadoc.exe",
+    "exclude": [],
+    "raw_params": ""
+}
+
+==== COMMAND ====
+"C:\Program Files\Java\jdk-22\bin\javadoc.exe" 
+	-sourcepath "c:\Develop\Unipd\EDIDS\test-Tess" 
+	-d "c:\Develop\Unipd\EDIDS\test-Tess\javadoc" 
+	"c:\Develop\Unipd\EDIDS\test-Tess\src\myAdapter\HCollection.java"
+	"c:\Develop\Unipd\EDIDS\test-Tess\src\myAdapter\HIterator.java"
+	"c:\Develop\Unipd\EDIDS\test-Tess\src\myAdapter\HList.java"
+	"c:\Develop\Unipd\EDIDS\test-Tess\src\myAdapter\HListIterator.java"
+	"c:\Develop\Unipd\EDIDS\test-Tess\src\myAdapter\ListAdapter.java"
+	"c:\Develop\Unipd\EDIDS\test-Tess\src\myAdapter\ListIteratorAdapter.java"
+	"c:\Develop\Unipd\EDIDS\test-Tess\src\myTest\ListAdapterTest.java"
+	"c:\Develop\Unipd\EDIDS\test-Tess\src\myTest\TestRunner.java"
+
+
+==== JAVADOC OUTPUT ====
+Loading source file c:\Develop\Unipd\EDIDS\test-Tess\src\myAdapter\HCollection.java...
+Loading source file c:\Develop\Unipd\EDIDS\test-Tess\src\myAdapter\HIterator.java...
+Loading source file c:\Develop\Unipd\EDIDS\test-Tess\src\myAdapter\HList.java...
+Loading source file c:\Develop\Unipd\EDIDS\test-Tess\src\myAdapter\HListIterator.java...
+Loading source file c:\Develop\Unipd\EDIDS\test-Tess\src\myAdapter\ListAdapter.java...
+Loading source file c:\Develop\Unipd\EDIDS\test-Tess\src\myAdapter\ListIteratorAdapter.java...
+Loading source file c:\Develop\Unipd\EDIDS\test-Tess\src\myTest\ListAdapterTest.java...
+Loading source file c:\Develop\Unipd\EDIDS\test-Tess\src\myTest\TestRunner.java...
+Constructing Javadoc information...
+Creating destination directory: "c:\Develop\Unipd\EDIDS\test-Tess\javadoc\"
+Building index for all the packages and classes...
+Standard Doclet version 22.0.1+8-16
+Building tree for all the packages and classes...
+c:\Develop\Unipd\EDIDS\test-Tess\src\myAdapter\HList.java:4: error: unexpected heading used: <H1>, compared to implicit preceding heading: <H1>
+ * <h1>
+   ^
+c:\Develop\Unipd\EDIDS\test-Tess\src\myAdapter\HListIterator.java:4: error: unexpected heading used: <H1>, compared to implicit preceding heading: <H1>
+ * <h1>
+   ^
+Generating c:\Develop\Unipd\EDIDS\test-Tess\javadoc\myAdapter\HCollection.html...
+c:\Develop\Unipd\EDIDS\test-Tess\src\myAdapter\HCollection.java:15: warning: no main description
+    *@return restituisce un iteratore relativo agli elementi della raccolta 
+     ^
+c:\Develop\Unipd\EDIDS\test-Tess\src\myAdapter\HCollection.java:50: warning: no main description
+     * @param o elemento di tipo Object la cui presenza nella collezione deve essere testata 
+       ^
+c:\Develop\Unipd\EDIDS\test-Tess\src\myAdapter\HCollection.java:58: warning: no main description
+     * @param c parametro di tipo Hcollection da controllare per il contenimento in questa collezione 
+       ^
+c:\Develop\Unipd\EDIDS\test-Tess\src\myAdapter\HCollection.java:78: warning: no main description
+     * @return ritorna true se la collezione non contiene elementi  
+       ^
+Generating c:\Develop\Unipd\EDIDS\test-Tess\javadoc\myAdapter\HIterator.html...
+c:\Develop\Unipd\EDIDS\test-Tess\src\myAdapter\HIterator.java:14: warning: no main description
+     * @return ritorna true se l'iterazione ha pi� elementi
+       ^
+c:\Develop\Unipd\EDIDS\test-Tess\src\myAdapter\HIterator.java:19: warning: no main description
+     * @return ritorna l'elemto successivo nell'iterazione 
+       ^
+c:\Develop\Unipd\EDIDS\test-Tess\src\myAdapter\HIterator.java:20: error: reference not found
+     * @throws NoSuchElementException se non ci sono pi� elementi
+       ^
+c:\Develop\Unipd\EDIDS\test-Tess\src\myAdapter\HIterator.java:30: error: unexpected text
+     * @throws UnsupportedOperationException: se l'operazione di rimozione non � supportata da questo iteratore dell'elenco
+                                            ^
+c:\Develop\Unipd\EDIDS\test-Tess\src\myAdapter\HIterator.java:31: error: unexpected text
+     * @throws IllegalStateException: non sono stati chiamati n� il successivo n� il precedente, oppure la rimozione o l'aggiunta sono state chiamate dopo l'ultima chiamata a * successivo o precedente.
+                                    ^
+c:\Develop\Unipd\EDIDS\test-Tess\src\myAdapter\HIterator.java:20: warning: cannot find exception type by name
+     * @throws NoSuchElementException se non ci sono pi� elementi
+               ^
+Generating c:\Develop\Unipd\EDIDS\test-Tess\javadoc\myAdapter\HList.html...
+c:\Develop\Unipd\EDIDS\test-Tess\src\myAdapter\HList.java:52: error: malformed HTML
+     * @throws IndexOutOfBoundsException se l'indice � fuori intervallo (indice < 0 || indice >= dimensione()).
+                                                                                ^
+c:\Develop\Unipd\EDIDS\test-Tess\src\myAdapter\HList.java:66: error: reference not found
+     * @throws IndexOutOfBandsException se l'indice � fuori dall'intervallo
+       ^
+c:\Develop\Unipd\EDIDS\test-Tess\src\myAdapter\HList.java:100: error: reference not found
+     * @throws IndexOutOfboundsException se l'indice � fuori dal range (indice < 0 || indice > size())
+       ^
+c:\Develop\Unipd\EDIDS\test-Tess\src\myAdapter\HList.java:100: error: malformed HTML
+     * @throws IndexOutOfboundsException se l'indice � fuori dal range (indice < 0 || indice > size())
+                                                                               ^
+c:\Develop\Unipd\EDIDS\test-Tess\src\myAdapter\HList.java:113: error: malformed HTML
+     * @throws ArrayIndexOutOfBoundsException se l'indice e' fuori dal range (indice < 0 || indice > size())
+                                                                                     ^
+c:\Develop\Unipd\EDIDS\test-Tess\src\myAdapter\HList.java:141: error: malformed HTML
+     * @throws IndexOutOfBoundsException - per un valore di indice endpoint non valido (fromIndex < 0 || toIndex > size || fromIndex > toIndex).
+                                                                                                  ^
+c:\Develop\Unipd\EDIDS\test-Tess\src\myAdapter\HList.java:66: warning: cannot find exception type by name
+     * @throws IndexOutOfBandsException se l'indice � fuori dall'intervallo
+               ^
+c:\Develop\Unipd\EDIDS\test-Tess\src\myAdapter\HList.java:100: warning: cannot find exception type by name
+     * @throws IndexOutOfboundsException se l'indice � fuori dal range (indice < 0 || indice > size())
+               ^
+Generating c:\Develop\Unipd\EDIDS\test-Tess\javadoc\myAdapter\HListIterator.html...
+c:\Develop\Unipd\EDIDS\test-Tess\src\myAdapter\HListIterator.java:31: error: invalid use of @return
+     * @return l'elemento con cui sostituire l'ultimo elemento restituito da next o previous.
+       ^
+c:\Develop\Unipd\EDIDS\test-Tess\src\myAdapter\HListIterator.java:32: warning: no description for @throws
+     * @throws NullPointerException 
+       ^
+c:\Develop\Unipd\EDIDS\test-Tess\src\myAdapter\HListIterator.java:64: error: reference not found
+     * @throws NoSuchElementException se l'iterazione non ha elementi precedenti
+       ^
+c:\Develop\Unipd\EDIDS\test-Tess\src\myAdapter\HListIterator.java:91: error: no tag name after '@'
+     * o {@ collegamento #precedente}
+           ^
+c:\Develop\Unipd\EDIDS\test-Tess\src\myAdapter\HListIterator.java:92: warning: no description for @throws
+     * @throws NullPointerException
+       ^
+c:\Develop\Unipd\EDIDS\test-Tess\src\myAdapter\HListIterator.java:94: warning: no description for @throws
+     * @throws ArrayIndexOutOfBoundsException
+       ^
+c:\Develop\Unipd\EDIDS\test-Tess\src\myAdapter\HListIterator.java:64: warning: cannot find exception type by name
+     * @throws NoSuchElementException se l'iterazione non ha elementi precedenti
+               ^
+Generating c:\Develop\Unipd\EDIDS\test-Tess\javadoc\myAdapter\ListAdapter.html...
+c:\Develop\Unipd\EDIDS\test-Tess\src\myAdapter\ListAdapter.java:5: warning: no comment
+public class ListAdapter implements HList{
+       ^
+c:\Develop\Unipd\EDIDS\test-Tess\src\myAdapter\ListAdapter.java:10: warning: no comment
+    public ListAdapter() {
+           ^
+c:\Develop\Unipd\EDIDS\test-Tess\src\myAdapter\ListAdapter.java:14: warning: no comment
+    public ListAdapter(HCollection c) {
+           ^
+Generating c:\Develop\Unipd\EDIDS\test-Tess\javadoc\myTest\ListAdapterTest.html...
+c:\Develop\Unipd\EDIDS\test-Tess\src\myTest\ListAdapterTest.java:5: warning: no comment
+public class ListAdapterTest {
+       ^
+c:\Develop\Unipd\EDIDS\test-Tess\src\myTest\ListAdapterTest.java:5: warning: use of default constructor, which does not provide a comment
+public class ListAdapterTest {
+       ^
+c:\Develop\Unipd\EDIDS\test-Tess\src\myTest\ListAdapterTest.java:6: warning: no comment
+    public static void main(String[] args) {
+                       ^
+Generating c:\Develop\Unipd\EDIDS\test-Tess\javadoc\myAdapter\ListIteratorAdapter.html...
+c:\Develop\Unipd\EDIDS\test-Tess\src\myAdapter\ListIteratorAdapter.java:5: warning: no comment
+public class ListIteratorAdapter implements HListIterator
+       ^
+c:\Develop\Unipd\EDIDS\test-Tess\src\myAdapter\ListIteratorAdapter.java:11: warning: no comment
+    public ListIteratorAdapter(){
+           ^
+c:\Develop\Unipd\EDIDS\test-Tess\src\myAdapter\ListIteratorAdapter.java:16: warning: no comment
+    public ListIteratorAdapter(ListAdapter o){
+           ^
+c:\Develop\Unipd\EDIDS\test-Tess\src\myAdapter\ListIteratorAdapter.java:21: warning: no comment
+    public ListIteratorAdapter(ListAdapter o, int index){
+           ^
+Generating c:\Develop\Unipd\EDIDS\test-Tess\javadoc\myTest\TestRunner.html...
+c:\Develop\Unipd\EDIDS\test-Tess\src\myTest\TestRunner.java:3: warning: no comment
+public class TestRunner {
+       ^
+c:\Develop\Unipd\EDIDS\test-Tess\src\myTest\TestRunner.java:3: warning: use of default constructor, which does not provide a comment
+public class TestRunner {
+       ^
+Generating c:\Develop\Unipd\EDIDS\test-Tess\javadoc\myAdapter\package-summary.html...
+Generating c:\Develop\Unipd\EDIDS\test-Tess\javadoc\myAdapter\package-tree.html...
+Generating c:\Develop\Unipd\EDIDS\test-Tess\javadoc\myTest\package-summary.html...
+Generating c:\Develop\Unipd\EDIDS\test-Tess\javadoc\myTest\package-tree.html...
+Generating c:\Develop\Unipd\EDIDS\test-Tess\javadoc\overview-tree.html...
+Generating c:\Develop\Unipd\EDIDS\test-Tess\javadoc\index.html...
+Generating c:\Develop\Unipd\EDIDS\test-Tess\javadoc\allclasses-index.html...
+Building index for all classes...
+Generating c:\Develop\Unipd\EDIDS\test-Tess\javadoc\allpackages-index.html...
+Generating c:\Develop\Unipd\EDIDS\test-Tess\javadoc\index-all.html...
+Generating c:\Develop\Unipd\EDIDS\test-Tess\javadoc\search.html...
+Generating c:\Develop\Unipd\EDIDS\test-Tess\javadoc\overview-summary.html...
+Generating c:\Develop\Unipd\EDIDS\test-Tess\javadoc\help-doc.html...
+14 errors
+25 warnings
+
+

@@ -10,6 +10,7 @@ package myAdapter;
 public interface HIterator {
 
     /**
+     * 
      * @return ritorna true se l'iterazione ha più elementi
      */
     public boolean hasNext();
