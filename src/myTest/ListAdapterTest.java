@@ -1,6 +1,7 @@
 package myTest;
 import myAdapter.*;
 
+
 public class ListAdapterTest {
     public static void main(String[] args) {
         ListAdapter list = new ListAdapter();

@@ -166,7 +166,7 @@ public class ListAdapter implements HList{
      */
     public void add(int index, Object element) {      
         excNullPtrCast(element);
-        v.insertElementAt(element, index);//Lancia già IndexOutOfBoundsException
+        v.insertElementAt(element, index);//Lancia già ArrayIndexOutOfBoundsException
     }
 
     public boolean addAll(int index, HCollection c)
@@ -185,17 +185,17 @@ public class ListAdapter implements HList{
     }
     
     public Object get(int index){
-        return v.elementAt(index);//Lancia già IndexOutOfBoundsException
+        return v.elementAt(index);//Lancia già ArrayIndexOutOfBoundsException
     }
 
     public int indexOf(Object o) {
         excNullPtrCast(o);
-        return v.indexOf(o); //Lancia già IndexOutOfBoundsException
+        return v.indexOf(o); //Lancia già ArrayIndexOutOfBoundsException
     }
 
     public int lastIndexOf(Object o) {
         excNullPtrCast(o);
-        return v.lastIndexOf(o); //Lancia già IndexOutOfBoundsException
+        return v.lastIndexOf(o);
     }
 
     public ListIteratorAdapter listIterator() {
@@ -211,14 +211,14 @@ public class ListAdapter implements HList{
 
     public Object remove(int index) {
         Object o = get(index);
-        v.removeElementAt(index);//Lancia già IndexOutOfBoundsException 
+        v.removeElementAt(index);//Lancia già ArrayIndexOutOfBoundsException 
         return o;
     }
 
     public Object set(int index, Object element) {
         excNullPtrCast(element);
         Object o = get(index);
-        v.setElementAt(element,index); //Lancia già IndexOutOfBoundsException
+        v.setElementAt(element,index); //Lancia già ArrayIndexOutOfBoundsException
         return o;
     }
 
