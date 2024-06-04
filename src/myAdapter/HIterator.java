@@ -1,3 +1,6 @@
+/**
+ * @hide
+ */
 package myAdapter;
 
 /**
@@ -10,12 +13,19 @@ package myAdapter;
 public interface HIterator {
 
     /**
+     * <p>
+     * Restituisce true se l'iterazione ha più elementi.
+     * </p>
      * 
      * @return ritorna true se l'iterazione ha più elementi
      */
     public boolean hasNext();
 
     /**
+     * <p>
+     * Restituisce l'elemento successivo nell'iterazione.
+     * </p>
+     * 
      * @return ritorna l'elemto successivo nell'iterazione 
      * @throws NoSuchElementException se non ci sono più elementi
      */
@@ -23,7 +33,7 @@ public interface HIterator {
 
     /**
      * <p>
-     * rimuove dall'insieme l'ultimo elemento restituito dall'iteratore. Il comportamento dell'iteratore
+     * Rimuove dall'insieme l'ultimo elemento restituito dall'iteratore. Il comportamento dell'iteratore
      * non è specificato se l'insieme sottostante viene modificato mentre è in corso l'iterazione 
      * </p> 
      * 

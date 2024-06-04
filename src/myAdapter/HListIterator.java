@@ -1,12 +1,14 @@
+/**
+ * @hide
+ */
 package myAdapter;
 
 /**
  * <h1>
- * An iterator for traversing a list bidirectionally.
+ * Un iteratore per attraversare una lista bidirezionalmente.
  * </h1>
  * <p>
- * This interface extends the {@link HIterator} interface and provides additional methods
- * to add, remove, and modify elements in a list.
+ * Questa interfaccia estende l'interfaccia {@link HIterator} e fornisce metodi aggiuntivi per aggiungere, rimuovere e modificare elementi in un elenco.
  * </p>
  * 
  * @see HIterator

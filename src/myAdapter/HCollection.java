@@ -1,4 +1,6 @@
-
+/**
+ * @hide
+ */
 package myAdapter;
 
 /**
@@ -12,8 +14,12 @@ package myAdapter;
 public interface HCollection {
  
     /**
-    *@return restituisce un iteratore relativo agli elementi della raccolta 
-    */
+     * <p>
+     * Restituisce un iteratore sugli elementi di questa raccolta.
+     * </p>
+     * 
+     * @return restituisce un iteratore relativo agli elementi della raccolta 
+     */
     public HIterator iterator();
     
     
@@ -21,6 +27,7 @@ public interface HCollection {
      * <p>
      * Assicura che la raccolta contenga l'elemento specificato
      * </p>
+     * 
      * @param o paramatro di tipo oggetto 
      * @return  restituisce true se questa raccolta è stata modificata a seguito della chiamata,
      *          false se la raccolta non consente duplicati e contiene già l'elemento 
@@ -31,6 +38,7 @@ public interface HCollection {
      * <p>
      * Aggiunge tutti gli elementi del tipo specificato alla raccolta
      * </p> 
+     * 
      * @param c parametro di tipo HCollection 
      * @return ritorna true se la collezione è cambiata in seguito alla chiamata 
      * @throws NullPointerException se l'insieme specificato contiene uno o più elementi nulli o è nullo
@@ -46,7 +54,10 @@ public interface HCollection {
     public void clear();
 
     /**
-
+     * <p>
+     * Restituisce vero se questa raccolta contiene l'elemento specificato
+     * </p>
+     * 
      * @param o elemento di tipo Object la cui presenza nella collezione deve essere testata 
      * @return ritorna true se la collezione contiene l'elemento specificato
      * @throws NullPointerException se l'elemento specificato è nullo e questa raccolta non supporta elementi nulli
@@ -55,6 +66,10 @@ public interface HCollection {
     public boolean contains(Object o);
 
     /**
+     * <p>
+     * Restituisce vero se questa raccolta contiene tutti gli elementi nella raccolta specificata.
+     * </p>
+     * 
      * @param c parametro di tipo Hcollection da controllare per il contenimento in questa collezione 
      * @return restituisce true se questa raccolta contiene tutti gli elementi dell'insieme specificato
      */
@@ -64,17 +79,26 @@ public interface HCollection {
      * <p>
      * Confronta l'oggetto specificato con questa raccolta 
      * </p>
+     * 
      * @param o parametro di tipo Object inserito nella raccolta 
      * @return true se l'oggetto specificato è uguale a quelli inseriti nella raccolta 
      */
     public boolean equals(Object o);
 
     /**
+     * <p>
+     * Restituisce il valore del codice hash per questa raccolta.
+     * </p>
+     * 
      * @return restituisce il valore del codice hash per questa raccolta
      */
     public int hashCode();
     
     /**
+     * <p>
+     * Restituisce vero se questa raccolta non contiene elementi.
+     * </p>
+     * 
      * @return ritorna true se la collezione non contiene elementi  
      */
     public boolean isEmpty();
@@ -91,7 +115,7 @@ public interface HCollection {
     public boolean remove(Object o);
 
     /**
-     *<p>
+     * <p>
      * Rimuove tutti gli elementi di questa raccolta che sono contenuti anche nella raccolta specificata 
      * </p>
      * 

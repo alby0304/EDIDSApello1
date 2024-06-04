@@ -1,3 +1,6 @@
+/**
+ * @hide
+ */
 package myAdapter;
 
 import java.util.Vector;
