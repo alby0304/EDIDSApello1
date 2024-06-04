@@ -1,8 +1,9 @@
 package myAdapter;
 
 /**
+ * <h1>
  * An iterator for traversing a list bidirectionally.
- * 
+ * </h1>
  * <p>
  * This interface extends the {@link HIterator} interface and provides additional methods
  * to add, remove, and modify elements in a list.
@@ -14,7 +15,9 @@ package myAdapter;
 public interface HListIterator extends HIterator {
     
     /**
-     * Inserts the specified element into the list.
+     *<p>
+     *Inserts the specified element into the list.
+     *</p>
      * 
      * @param o the element to be added
      */
