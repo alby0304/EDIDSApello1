@@ -35,7 +35,11 @@ public class ListAdapter implements HList{
         boolean modified = false;
         Object[] items = c.toArray();
         for (int i = 0; i < items.length; i++) {
-            modified = modified || add(items[i]);
+            boolean change = add(items[i]);
+            if(!modified&&change){
+                modified= true;
+            }
+
         }
         return modified;
     }
@@ -140,12 +144,14 @@ public class ListAdapter implements HList{
         if (a == null) {
             throw new NullPointerException();
         }
+        /* 
         Class arrayType = a.getClass();
         for (int i = 0; i < v.size(); i++) {
             if (!arrayType.isInstance(v.elementAt(i))) {
                 throw new ArrayStoreException();
             }
         }
+        */
         if (a.length == v.size()) {
             a = toArray();
         } else if (a.length < v.size()) {

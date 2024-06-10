@@ -1,8 +1,19 @@
 package myTest;
+import static org.junit.*;
+
 import myAdapter.*;
 
-
 public class ListAdapterTest {
+    
+    @Test
+    public void test()
+    {
+        ListAdapter a = new ListAdapter();
+        assertEquals(true,a.add(3));
+    }
+}
+
+/*
     public static void main(String[] args) {
         ListAdapter list = new ListAdapter();
         list.add(1);
@@ -33,6 +44,6 @@ public class ListAdapterTest {
         }
 
     }
-}
+    */
 
 
