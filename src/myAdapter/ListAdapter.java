@@ -18,6 +18,10 @@ public class ListAdapter implements HList{
         this();
         addAll(c);
     }
+    private ListAdapter(Vector vet) {
+        v = vet;
+        it = new ListIteratorAdapter(this);
+    }
 
     /*
      * Override HColletion
@@ -79,11 +83,12 @@ public class ListAdapter implements HList{
 
     public int hashCode() {
         int hashCode = 1;
-        ListIteratorAdapter i = it; //TODO da riguardare
+        HIterator i = this.iterator(); //TODO da riguardare
         while (i.hasNext()) {
             Object obj = i.next();
             hashCode = 31*hashCode + (obj==null ? 0 : obj.hashCode());
         }
+        //System.out.println(hashCode);
         return hashCode;
     }
 
@@ -108,7 +113,10 @@ public class ListAdapter implements HList{
         boolean modified = false;
         Object[] items = c.toArray();
         for (int i = 0; i < items.length; i++) {
-            modified = modified || remove(items[i]);
+            boolean change = remove(items[i]);
+            if(!modified&&change){
+                modified= true;
+            }
         }
         return modified;
     }
@@ -235,12 +243,41 @@ public class ListAdapter implements HList{
         if (fromIndex < 0 || toIndex > v.size() || fromIndex > toIndex) {
             throw new IndexOutOfBoundsException();
         }
+        Vector beforeVector = new Vector();
+        Vector afterVector = new Vector();
+        for(int i = 0; i<fromIndex; i++){
+            beforeVector.addElement(v.elementAt(i));
+            v.removeElementAt(i);
+        }
+        for(int i = toIndex; i< v.size(); i++){
+            afterVector.addElement(v.elementAt(i));
+            v.removeElementAt(i);
+        }
+        ListAdapter list = new ListAdapter(v);
+        for(int i = 0; i<fromIndex; i++){
+            v.insertElementAt(beforeVector.elementAt(i),i);
+        }
+        for(int i = toIndex; i< afterVector.size(); i++){
+            v.addElement(afterVector.elementAt(i-toIndex));
+        }
+        return list;
+    }
+
+    /* 
+    public HList subList(int fromIndex, int toIndex) {
+        if (fromIndex < 0 || toIndex > v.size() || fromIndex > toIndex) {
+            throw new IndexOutOfBoundsException();
+        }
         ListAdapter sub = new ListAdapter();
         for (int i = fromIndex; i < toIndex; i++) {
             sub.add(get(i));
+        }  
+        if(fromIndex == toIndex){
+            return sub;
         }
         return sub;
     }
+        */
 
      /*
      * Helper methods
