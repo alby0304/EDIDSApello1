@@ -243,24 +243,8 @@ public class ListAdapter implements HList{
         if (fromIndex < 0 || toIndex > v.size() || fromIndex > toIndex) {
             throw new IndexOutOfBoundsException();
         }
-        Vector beforeVector = new Vector();
-        Vector afterVector = new Vector();
-        for(int i = 0; i<fromIndex; i++){
-            beforeVector.addElement(v.elementAt(i));
-            v.removeElementAt(i);
-        }
-        for(int i = toIndex; i< v.size(); i++){
-            afterVector.addElement(v.elementAt(i));
-            v.removeElementAt(i);
-        }
-        ListAdapter list = new ListAdapter(v);
-        for(int i = 0; i<fromIndex; i++){
-            v.insertElementAt(beforeVector.elementAt(i),i);
-        }
-        for(int i = toIndex; i< afterVector.size(); i++){
-            v.addElement(afterVector.elementAt(i-toIndex));
-        }
-        return list;
+        SubList sub = new SubList(fromIndex,toIndex,this);
+        return sub;
     }
 
     /* 
@@ -291,5 +275,50 @@ public class ListAdapter implements HList{
         }
     }
 
+
+    private class SubList extends ListAdapter{
+        private int max;
+        private int min;
+        ListAdapter list;
+        private SubList(int fromIndex, int toIndex,ListAdapter list){
+            max = toIndex;
+            min = fromIndex;
+            this.list = list;
+        }
+
+        //metodi ListAdapter
+
+        public void add(int index, Object element) {      
+            if(check(index))
+            {
+                list.add(min+index,element);
+                max++;
+            }
+        }
+
+        public boolean add(Object o) {
+            list.add(max,o);
+            max++;
+            return true;
+        }
+
+        public Object get(int index)
+        {
+            if(!(check(index)))
+            {
+                throw new IndexOutOfBoundsException();
+            }
+            return list.get(min+index);
+        }
+
+        private boolean check(int index)
+        {
+            if(index>=min && index<max){
+                return true;
+            }
+            return false;
+        }
+    }
 }
+
 

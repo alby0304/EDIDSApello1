@@ -251,16 +251,19 @@ public class ListAdapterTest {
     @Test
     public void SubList()
     {
-
         ListAdapter list = new ListAdapter();
         list.add(1);
         list.add(2);
         list.add(3);
-        ListAdapter sublist = (ListAdapter) list.subList(0, 1);
-        sublist.set(0,3);
-        assertEquals(3,sublist.get(0));
-        assertEquals(3,list.get(0));
+        HList sub = list.subList(0, 1);
+        sub.add(4);
+        sub.add(1,5);
+        assertEquals(5,sub.get(1));
+        assertEquals(5,list.get(1));
+        assertEquals(4,list.get(2));
+        assertEquals(2,list.get(3));
     }
+
     @Test
     public void toArray(){
         ListAdapter list = new ListAdapter();
