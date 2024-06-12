@@ -18,10 +18,6 @@ public class ListAdapter implements HList{
         this();
         addAll(c);
     }
-    private ListAdapter(Vector vet) {
-        v = vet;
-        it = new ListIteratorAdapter(this);
-    }
 
     /*
      * Override HColletion
@@ -96,7 +92,7 @@ public class ListAdapter implements HList{
         return v.isEmpty();
     }
 
-    public ListIteratorAdapter iterator()
+    public HIterator iterator()
     {
         return it;
     }
@@ -215,11 +211,11 @@ public class ListAdapter implements HList{
         return v.lastIndexOf(o);
     }
 
-    public ListIteratorAdapter listIterator() {
+    public HListIterator listIterator() {
         return it;
     }
 
-    public ListIteratorAdapter listIterator(int index) {
+    public HListIterator listIterator(int index) {
         if (index < 0 || index > v.size()) {
             throw new IndexOutOfBoundsException();
         }

@@ -10,7 +10,7 @@ import org.junit.After;
 
 public class ListAdapterTest {
         //N - E - G - R - I    <----- NON CANCELLARE
-        
+       
     @Test
     public void add(){
         final int add = 1;
@@ -184,7 +184,7 @@ public class ListAdapterTest {
     public void ListIterator(){
         final int add = 1;
         ListAdapter list = new ListAdapter();
-        ListIteratorAdapter it = list.iterator();
+        HListIterator it = list.listIterator();
         assertEquals(it,list.iterator());
     }
 

@@ -39,10 +39,10 @@ public class ListIteratorAdapter implements HListIterator
         if(!hasNext()){
             throw  new NoSuchElementException();
         }
-        return l.get(index++);
+        return l.get(index++); //incremento viene fatto post
     }
 
-    @Override
+    @Override //TODO rifare
     public void remove(){
         l.get(index);
     }
@@ -51,11 +51,11 @@ public class ListIteratorAdapter implements HListIterator
     **  HListIterator
     */
    public void add(Object o){
-        l.add(o);       
+        l.add(index,o);    
    }
 
    public boolean hasPrevious(){
-        return (index>=0);
+        return (index>0);
    }
 
     public int nextIndex(){
@@ -66,7 +66,8 @@ public class ListIteratorAdapter implements HListIterator
         if(!hasPrevious()){
             throw new NoSuchElementException();
         }
-        return l.get(index--);
+        index--; //decremento devo farlo prima
+        return l.get(index);
     }
     
     public int previousIndex()
@@ -74,8 +75,8 @@ public class ListIteratorAdapter implements HListIterator
         return (index -1);
     }
 
-    public void set(Object o){
-        l.set(l.size()-1,o);
+    public void set(Object o){ //TODO decidere
+        l.set(index,o);
     }
     
     
