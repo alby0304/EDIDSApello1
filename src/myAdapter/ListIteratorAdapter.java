@@ -8,6 +8,7 @@ import java.util.NoSuchElementException;
 public class ListIteratorAdapter implements HListIterator
 {
     private int index = 0;
+    private int min = 0;
     private ListAdapter l;
 
     // Costruttori
@@ -25,13 +26,18 @@ public class ListIteratorAdapter implements HListIterator
         this.l = o;
         this.index = index;
     }
+    public ListIteratorAdapter(ListAdapter o, int index, int min){
+        this.l = o;
+        this.index = index;
+        this.min = min;
+    }
 
     /*
     **  Override HIterator
     */
     @Override
     public boolean hasNext(){
-        return index<l.size();
+        return index<l.size()+min;
     }
 
     @Override
@@ -55,7 +61,7 @@ public class ListIteratorAdapter implements HListIterator
    }
 
    public boolean hasPrevious(){
-        return (index>0);
+        return (index>min);
    }
 
     public int nextIndex(){

@@ -1,18 +1,17 @@
 package myTest;
-import myAdapter.*;
-import static org.junit.Assert.*;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.After;
-
-
-
-//Chi legge scemo e paga da bere
-
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Result;
+import org.junit.runner.notification.Failure;
 
 public class TestRunner {
-
-    
-
+    public static void main(String[] args) {
+        Result result = JUnitCore.runClasses(ListAdapterTest.class);
+        for (Failure failure : result.getFailures()) {
+            System.out.println(failure.toString());
+        }
+        System.out.println("Total tests run: " + result.getRunCount());
+        System.out.println("Total tests failed: " + result.getFailureCount());
+        System.out.println("Total time: " + result.getRunTime() + "ms");
+    }
 }
