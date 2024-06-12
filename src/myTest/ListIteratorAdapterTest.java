@@ -117,7 +117,7 @@ public class ListIteratorAdapterTest {
        }
 
        /**
-        * Summary: test che valuta l'efficacia del metodo nextIndex().
+        * Summary: Test che valuta se il metodo nextIndex() restituisce l'indice dell'elemento che sarebbe restituito dal metodo next()
         * 
         * Test design: test che valuta se in seguito all'aggiunta di un elemento, il metodo nextIndex() restuisce l'indice dell'elemento che restituirebbe next().
         * 
@@ -160,11 +160,12 @@ public class ListIteratorAdapterTest {
        }
        
        /**
-        * Summary: Test che vsluta l'efficacia del metodo previousIndex()
+        * Summary: Test che valuta se il metodo previousIndex() restituisce l'indice dell'elemento che sarebbe restituito dal metodo previous()
         * 
-        * Test design: Test che valuta se
+        * Test design: test che valuta se il metodo previousIndex() restituisce l'indice dell'elemento che restituirebbe previous(). 
+        * In questo caso -1 poichè iterator è all'inizio della lista
         * 
-        * Test description:
+        * Test description: eseguo la chiamata a previousIndex() aspettamdomi -1 come valore restituito
         * 
         * Precondition: esistenza di una lista 
         * 
@@ -198,15 +199,18 @@ public class ListIteratorAdapterTest {
        }
 
        /** 
-        * Summary: Test che valuta l'efficacia del metodo set()
+        * Summary: Test che valuta l'efficacia del metodo set() che sostituisce 
+        * l'ultimo elemento restituito dalla chiamata più recente a next o previous con l'elemento specificato
         * 
-        * Test design: Test che valuta se
+        * Test design: Test che valuta se in seguito all'aggiunta di 1 e alla chiamata di it.set(2), il valore restituito da next() sia effettivamente 
+        * quello stabilito da set() (in questo caso 2)
         * 
-        * Test description:
+        * Test description: aggiungo 1, imposto a 2 il valore che deve restituire next() tramite il metodo set() e valuto se il valore restituito 
+        * è quello desiderato
         * 
-        * Precondition: presenza di almeno un elemento 
+        * Precondition: esistenza di una lista
         * 
-        * Postcondition
+        * Postcondition: valore restituito da next() sostituito con quello passato in set()
         * 
         * Expected results: 2 
         */

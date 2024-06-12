@@ -6,6 +6,20 @@ import static org.junit.Assert.*;
 
 public class ListAdapterTest {
 
+
+   /**
+    * Summary: 
+    * 
+    * Test design: 
+    * 
+    * Test description:
+    * 
+    * Precondition:
+    * 
+    * Postcondition
+    * 
+    * Expected results: 
+    */
     @Test
     public void add() {
         final int add = 1;
@@ -14,6 +28,20 @@ public class ListAdapterTest {
         assertEquals(add, list.get(0));
     }
 
+
+    /**
+    * Summary: 
+    * 
+    * Test design: 
+    * 
+    * Test description:
+    * 
+    * Precondition:
+    * 
+    * Postcondition
+    * 
+    * Expected results: 
+    */
     @Test(expected = ClassCastException.class)
     public void addDifferentType() {
         final int add = 1;
@@ -23,6 +51,20 @@ public class ListAdapterTest {
         list.add(bool);
     }
 
+
+    /**
+    * Summary: 
+    * 
+    * Test design: 
+    * 
+    * Test description:
+    * 
+    * Precondition:
+    * 
+    * Postcondition
+    * 
+    * Expected results: 
+    */
     @Test
     public void addDouble() {
         final int add = 1;
@@ -32,6 +74,20 @@ public class ListAdapterTest {
         assertEquals(2, list.get(1));
     }
 
+
+    /**
+    * Summary: 
+    * 
+    * Test design: 
+    * 
+    * Test description:
+    * 
+    * Precondition:
+    * 
+    * Postcondition
+    * 
+    * Expected results: 
+    */
     @Test
     public void addRemoveObj() {
         // uso double perchè con int confonde metodo
@@ -41,6 +97,20 @@ public class ListAdapterTest {
         assertEquals(true, list.remove(add));
     }
 
+
+    /**
+    * Summary: 
+    * 
+    * Test design: 
+    * 
+    * Test description:
+    * 
+    * Precondition:
+    * 
+    * Postcondition
+    * 
+    * Expected results: 
+    */
     @Test
     public void addRemoveIndex() {
         final int add = 1;
@@ -49,6 +119,20 @@ public class ListAdapterTest {
         assertEquals(add, list.remove(0));
     }
 
+
+/**
+    * Summary: 
+    * 
+    * Test design: 
+    * 
+    * Test description:
+    * 
+    * Precondition:
+    * 
+    * Postcondition
+    * 
+    * Expected results: 
+    */
     @Test
     public void addAll() {
         final int add = 1;
@@ -64,6 +148,20 @@ public class ListAdapterTest {
         assertEquals(giusto[2], list.get(2));
     }
 
+
+    /**
+    * Summary: 
+    * 
+    * Test design: 
+    * 
+    * Test description:
+    * 
+    * Precondition:
+    * 
+    * Postcondition
+    * 
+    * Expected results: 
+    */
     @Test
     public void addAllIndex() {
         final int add = 1;
@@ -82,6 +180,20 @@ public class ListAdapterTest {
 
     }
 
+
+    /**
+    * Summary: 
+    * 
+    * Test design: 
+    * 
+    * Test description:
+    * 
+    * Precondition:
+    * 
+    * Postcondition
+    * 
+    * Expected results: 
+    */
     @Test
     public void clear() {
         final int add = 1;
@@ -91,6 +203,20 @@ public class ListAdapterTest {
         assertEquals(0, list.size());
     }
 
+    
+    /**
+    * Summary: 
+    * 
+    * Test design: 
+    * 
+    * Test description:
+    * 
+    * Precondition:
+    * 
+    * Postcondition
+    * 
+    * Expected results: 
+    */
     @Test
     public void contains() {
         final int add = 1;
@@ -99,6 +225,20 @@ public class ListAdapterTest {
         assertEquals(true, list.contains(1));
     }
 
+    
+    /**
+    * Summary: 
+    * 
+    * Test design: 
+    * 
+    * Test description:
+    * 
+    * Precondition:
+    * 
+    * Postcondition
+    * 
+    * Expected results: 
+    */
     @Test
     public void containsAll() {
         final int add = 1;
@@ -112,6 +252,20 @@ public class ListAdapterTest {
         assertEquals(true, list.containsAll(list2));
     }
 
+    
+    /**
+    * Summary: 
+    * 
+    * Test design: 
+    * 
+    * Test description:
+    * 
+    * Precondition:
+    * 
+    * Postcondition
+    * 
+    * Expected results: 
+    */
     @Test
     public void equals() {
         ListAdapter list = new ListAdapter();
@@ -124,6 +278,20 @@ public class ListAdapterTest {
         assertEquals(true, list.equals(list2));
     }
 
+    
+    /**
+    * Summary: 
+    * 
+    * Test design: 
+    * 
+    * Test description:
+    * 
+    * Precondition:
+    * 
+    * Postcondition
+    * 
+    * Expected results: 
+    */
     @Test
     public void get() {
         final int add = 1;
@@ -132,6 +300,20 @@ public class ListAdapterTest {
         assertEquals(add, list.get(0));
     }
 
+    
+    /**
+    * Summary: 
+    * 
+    * Test design: 
+    * 
+    * Test description:
+    * 
+    * Precondition:
+    * 
+    * Postcondition
+    * 
+    * Expected results: 
+    */
     @Test
     public void testHashCode() {
         final int add = 1;
@@ -142,6 +324,20 @@ public class ListAdapterTest {
 
     }
 
+    
+    /**
+    * Summary: 
+    * 
+    * Test design: 
+    * 
+    * Test description:
+    * 
+    * Precondition:
+    * 
+    * Postcondition
+    * 
+    * Expected results: 
+    */
     @Test
     public void indexOF() {
         final int add = 1;
@@ -150,6 +346,20 @@ public class ListAdapterTest {
         assertEquals(0, list.indexOf(add));
     }
 
+    
+    /**
+    * Summary: 
+    * 
+    * Test design: 
+    * 
+    * Test description:
+    * 
+    * Precondition:
+    * 
+    * Postcondition
+    * 
+    * Expected results: 
+    */
     @Test
     public void isEmpty() {
         final int add = 1;
@@ -158,6 +368,20 @@ public class ListAdapterTest {
         assertEquals(false, list.isEmpty());
     }
 
+    
+    /**
+    * Summary: 
+    * 
+    * Test design: 
+    * 
+    * Test description:
+    * 
+    * Precondition:
+    * 
+    * Postcondition
+    * 
+    * Expected results: 
+    */
     @Test
     public void iterator() {
         final int add = 1;
@@ -166,6 +390,20 @@ public class ListAdapterTest {
         assertEquals(it, list.iterator());
     }
 
+    
+    /**
+    * Summary: 
+    * 
+    * Test design: 
+    * 
+    * Test description:
+    * 
+    * Precondition:
+    * 
+    * Postcondition
+    * 
+    * Expected results: 
+    */
     @Test
     public void lastIndexOf() {
         final int add = 1;
@@ -175,6 +413,20 @@ public class ListAdapterTest {
         assertEquals(1, list.lastIndexOf(add));
     }
 
+    
+    /**
+    * Summary: 
+    * 
+    * Test design: 
+    * 
+    * Test description:
+    * 
+    * Precondition:
+    * 
+    * Postcondition
+    * 
+    * Expected results: 
+    */
     @Test
     public void ListIterator() {
         final int add = 1;
@@ -183,6 +435,20 @@ public class ListAdapterTest {
         assertEquals(it, list.iterator());
     }
 
+    
+    /**
+    * Summary: 
+    * 
+    * Test design: 
+    * 
+    * Test description:
+    * 
+    * Precondition:
+    * 
+    * Postcondition
+    * 
+    * Expected results: 
+    */
     @Test
     public void ListIteratorIndex() {
         final int add = 1;
@@ -191,6 +457,20 @@ public class ListAdapterTest {
         assertEquals(add, list.listIterator(0).next());
     }
 
+    
+    /**
+    * Summary: 
+    * 
+    * Test design: 
+    * 
+    * Test description:
+    * 
+    * Precondition:
+    * 
+    * Postcondition
+    * 
+    * Expected results: 
+    */
     @Test
     public void removeAll() {
         ListAdapter list = new ListAdapter();
@@ -206,6 +486,20 @@ public class ListAdapterTest {
         assertEquals(1, vett.length);
     }
 
+    
+    /**
+    * Summary: 
+    * 
+    * Test design: 
+    * 
+    * Test description:
+    * 
+    * Precondition:
+    * 
+    * Postcondition
+    * 
+    * Expected results: 
+    */
     @Test
     public void retainAll() {
         ListAdapter list = new ListAdapter();
@@ -222,6 +516,20 @@ public class ListAdapterTest {
         assertEquals(2, vett.length);
     }
 
+    
+    /**
+    * Summary: 
+    * 
+    * Test design: 
+    * 
+    * Test description:
+    * 
+    * Precondition:
+    * 
+    * Postcondition
+    * 
+    * Expected results: 
+    */
     @Test
     public void set() {
         ListAdapter list = new ListAdapter();
@@ -233,6 +541,20 @@ public class ListAdapterTest {
         assertEquals(4, list.get(2));
     }
 
+    
+    /**
+    * Summary: 
+    * 
+    * Test design: 
+    * 
+    * Test description:
+    * 
+    * Precondition:
+    * 
+    * Postcondition
+    * 
+    * Expected results: 
+    */
     @Test
     public void size() {
         final int add = 1;
@@ -242,6 +564,20 @@ public class ListAdapterTest {
         assertEquals(2, list.size());
     }
 
+    
+    /**
+    * Summary: 
+    * 
+    * Test design: 
+    * 
+    * Test description:
+    * 
+    * Precondition:
+    * 
+    * Postcondition
+    * 
+    * Expected results: 
+    */
     @Test
     public void SubList() {
         ListAdapter list = new ListAdapter();
@@ -257,6 +593,20 @@ public class ListAdapterTest {
         assertEquals(2, list.get(3));
     }
 
+    
+    /**
+    * Summary: 
+    * 
+    * Test design: 
+    * 
+    * Test description:
+    * 
+    * Precondition:
+    * 
+    * Postcondition
+    * 
+    * Expected results: 
+    */
     @Test
     public void toArray() {
         ListAdapter list = new ListAdapter();
@@ -269,6 +619,20 @@ public class ListAdapterTest {
         assertEquals(list.get(2), fine[2]);
     }
 
+    
+    /**
+    * Summary: 
+    * 
+    * Test design: 
+    * 
+    * Test description:
+    * 
+    * Precondition:
+    * 
+    * Postcondition
+    * 
+    * Expected results: 
+    */
     @Test
     public void toArrayObjectArray() {
         ListAdapter list = new ListAdapter();

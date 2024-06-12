@@ -82,9 +82,8 @@ public interface HListIterator extends HIterator {
      * <p>
      * Sostituisce l'ultimo elemento restituito dalla chiamata più recente a {@link #next} 
      * o {@link #previous} con l'elemento specificato.
-     * Questo metodo può essere chiamato solo dopo una chiamata a {@link #next}
-     * o {@link #previous} è stato effettuato, ma non dopo una chiamata a {@link #remove} 
-     * o {@link #add}.
+     * Questa chiamata può essere effettuata solo se né remove() né add() 
+     * sono stati chiamati dopo l'ultima chiamata a next() o previous()
      * </p>
      *
      * @param o parametro di tipo Object da impostare
