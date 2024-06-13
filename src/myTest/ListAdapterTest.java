@@ -8,17 +8,18 @@ public class ListAdapterTest {
 
 
    /**
-    * Summary: 
+    * Summary: Test che prova il funzionamento del metodo add() aggiungendo un valore di tipo intero.
     * 
-    * Test design: 
+    * Test design: Test che valuta se in seguito alla creazione di una lista e all'invocazione di list.add(add) l'elemento è effettivamente stato inserito
     * 
-    * Test description:
+    * Test description: creo variabile costante add di valore 1, creo una lista di tipo ListAdapter, passo il valore al metodo add()
+    * e stabilisco se è avvenuta l'aggiunta.
     * 
-    * Precondition:
+    * Precondition: //TODO
     * 
-    * Postcondition
+    * Postcondition: lista con un elemento aggiunto.
     * 
-    * Expected results: 
+    * Expected results: int add
     */
     @Test
     public void add() {
@@ -30,17 +31,18 @@ public class ListAdapterTest {
 
 
     /**
-    * Summary: 
+    * Summary: Test che valuta l'aggiunta di variabili di vario tipo all'interno della stessa lista. 
     * 
-    * Test design: 
+    * Test design: test che valuta se in seguito alla creazione di una lista di tipo ListAdapter e all'aggiunta di un parametro int e uno boolean viene lanciata una eccezione. 
     * 
-    * Test description:
+    * Test description: creo variabile costante add di valore 1 e variabile bool=true, creo una lista di tipo ListAdapter, passo la variabile add al metodo add() 
+    * e successivamente passo bool. Infine stabilisco se ha lanciato l'eccezione ClassCastException.
     * 
     * Precondition:
     * 
-    * Postcondition
+    * Postcondition: aggiunta di un valore e lancio di un'eccezione.
     * 
-    * Expected results: 
+    * Expected results: ClassCastException 
     */
     @Test(expected = ClassCastException.class)
     public void addDifferentType() {
@@ -53,17 +55,18 @@ public class ListAdapterTest {
 
 
     /**
-    * Summary: 
+    * Summary: Test che valuta l'aggiunta consecutiva di due elementi.
     * 
-    * Test design: 
+    * Test design: Test che valuta se in seguito alla creazione di una lista di tipo ListAdapter e all'aggiunta di due valori risulta inserito anche il secondo.
     * 
-    * Test description:
+    * Test description: creo variabile costante add di valore 1, creo una lista di tipo ListAdapter, passo il valore al metodo add()
+    * e successivamente gli passo add+1. Ci si aspetta che il secondo valore aggiunto sia pari a 2.
     * 
     * Precondition:
     * 
-    * Postcondition
+    * Postcondition: presenza di 2 variabili di tipo int nella lista.
     * 
-    * Expected results: 
+    * Expected results: 2
     */
     @Test
     public void addDouble() {
@@ -76,17 +79,18 @@ public class ListAdapterTest {
 
 
     /**
-    * Summary: 
+    * Summary: Test che valuta il funzionamento del metodo remove su un elemento della lista in seguito alla sua aggiunta 
     * 
-    * Test design: 
+    * Test design: Test che valuta se, in seguito alla creazione di una lista di tipo ListAdapter e all'inserimento di un elemento, la sua rimozione viene eseguita.
     * 
-    * Test description:
+    * Test description: creo variabile costante add di valore 2.7, creo una lista di tipo ListAdapter, passo il valore al metodo add()
+    * e stabilisco se è avvenuta la sua rimozione.
     * 
     * Precondition:
     * 
-    * Postcondition
+    * Postcondition: lista vuota
     * 
-    * Expected results: 
+    * Expected results: true 
     */
     @Test
     public void addRemoveObj() {
@@ -99,17 +103,18 @@ public class ListAdapterTest {
 
 
     /**
-    * Summary: 
+    * Summary: Test che valuta il funzionamento del metodo 'Object remove(int index)' che restituisce il valore dell'elemento che era appena stato inserito nella lista.
     * 
-    * Test design: 
+    * Test design: Test che valuta se, in seguito alla creazione di una lista di tipo ListAdapter e all'inserimento di un elemento, passandogli la posizione di quest'ultimo la sua rimozione viene eseguita e l'elemento viene restituito.
     * 
-    * Test description:
+    * Test description: creo variabile costante add di valore 1, creo una lista di tipo ListAdapter, passo il valore al metodo add()
+    * e stabilisco se è avvenuta la rimozione dell'elemento tramite la chiamata al metodo Object remove(int index) (restituisce l'oggetto rimosso dalla lista).
     * 
     * Precondition:
     * 
-    * Postcondition
+    * Postcondition: lista vuota.
     * 
-    * Expected results: 
+    * Expected results: add.
     */
     @Test
     public void addRemoveIndex() {
@@ -121,17 +126,19 @@ public class ListAdapterTest {
 
 
 /**
-    * Summary: 
+    * Summary: Test che valuta il funzionamento del metodo 'public boolean addAll(HCollection c)' che copia in una lista tutti gli elementi di quella passata come parametro.
     * 
-    * Test design: 
+    * Test design: Test che confronta gli elementi della lista con quelli di un array in seguito alla chiamata del metodo addAll().
     * 
-    * Test description:
+    * Test description: creo variabile costante add di valore 1 e array di 3 valori {1,2,3}, creo una lista di tipo ListAdapter, passo il valore al metodo add()
+    * e in seguito creo una seconda lista e richiamo 2 volte il metodo add() sulla nuova lista passandogli 2 e 3. Richiamo il metodo addAll() sulla lista1 passandogli la lista2 
+    * come parametro e valuto se la lista1 contiene tutti gli elementi aspettati confrontandola con quelli presenti nell'array creato inizialmente (uso il metodo get())
     * 
     * Precondition:
     * 
-    * Postcondition
+    * Postcondition: lista contenente 3 elementi.
     * 
-    * Expected results: 
+    * Expected results: 1,2,3
     */
     @Test
     public void addAll() {
@@ -150,28 +157,30 @@ public class ListAdapterTest {
 
 
     /**
-    * Summary: 
+    * Summary: Test che valuta il funzionamento del metodo 'public boolean addAll(int index, HCollection c)' che copia in una lista gli elementi di quella passata come parametro partendo dall'indice indicato
     * 
-    * Test design: 
+    * Test design: Test che confronta gli elementi della lista con quelli di un array in seguito alla chiamata del metodo addAll(int index, HCollection c).
     * 
-    * Test description:
+    * Test description: creo variabile costante add di valore 1 e array di 3 valori {1,2,3}, creo una lista di tipo ListAdapter, passo 2 volte il valore al metodo add()
+    * e in seguito creo una seconda lista e richiamo 2 volte il metodo add() sulla nuova lista passandogli 2 e 3. Richiamo il metodo addAll() sulla lista1 passandogli l'indice
+    * di partenza e la lista2 come parametri e valuto se la lista1 contiene tutti gli elementi aspettati confrontandola con quelli presenti nell'array creato inizialmente (uso il metodo get()).
     * 
     * Precondition:
     * 
-    * Postcondition
+    * Postcondition: lista contenente 4 elementi.
     * 
-    * Expected results: 
+    * Expected results: 1,2,3,1 
     */
     @Test
     public void addAllIndex() {
         final int add = 1;
         final int[] giusto = { 1, 2, 3 };
         ListAdapter list = new ListAdapter();
-        list.add(add);
-        list.add(add);
+        list.add(add); 
+        list.add(add);  
         ListAdapter list2 = new ListAdapter();
-        list2.add(2);
-        list2.add(3);
+        list2.add(2);  
+        list2.add(3); 
         list.addAll(1, list2);
         assertEquals(giusto[0], list.get(0));
         assertEquals(giusto[1], list.get(1));
@@ -182,17 +191,18 @@ public class ListAdapterTest {
 
 
     /**
-    * Summary: 
+    * Summary: Test che valuta il funzionamento del metodo 'public void clear()'.
     * 
-    * Test design: 
+    * Test design: Test che valuta se in seguito all'aggiunta di un elemento la lista viene svuotata.
     * 
-    * Test description:
+    * Test description: creo variabile costante add di valore 1, creo una lista di tipo ListAdapter, passo il valore al metodo add()
+    * e richiamo il metodo clear() sulla lista. Infine controllo tramite metodo {@link int myAdapter.ListAdapter.size()} se la lista è vuota.
     * 
     * Precondition:
     * 
-    * Postcondition
+    * Postcondition: lista vuota.
     * 
-    * Expected results: 
+    * Expected results: 0
     */
     @Test
     public void clear() {
@@ -205,17 +215,18 @@ public class ListAdapterTest {
 
     
     /**
-    * Summary: 
+    * Summary: Test che verifica il funzionamento del metodo 'public void contains(Object o)' in seguito all'aggiunta di un elemento add.
     * 
-    * Test design: 
+    * Test design: Test che valuta se dopo aver creato una lista e inserito un elemento quest'ultimo è effettivamente presente.
     * 
-    * Test description:
+    * Test description: creo variabile costante add di valore 1, creo una lista di tipo ListAdapter, passo il valore al metodo add()
+    * e richiamo il metodo contains() sulla lista passandogli 1 e controllo se è presente al suo interno.
     * 
     * Precondition:
     * 
-    * Postcondition
+    * Postcondition: lista contenente 1 elemento
     * 
-    * Expected results: 
+    * Expected results: true
     */
     @Test
     public void contains() {
@@ -227,17 +238,19 @@ public class ListAdapterTest {
 
     
     /**
-    * Summary: 
+    * Summary: Test che valuta il funzionamento del metodo 'public boolean containsAll(HCollection c) '
     * 
-    * Test design: 
+    * Test design: Test che valuta se dopo aver creato e iniziallizzato due liste la prima contiene tutti gli elementi della seconda
     * 
-    * Test description:
+    * Test description: creo variabile costante add di valore 1, creo una lista di tipo ListAdapter, passo il valore al metodo add()
+    * e richiamo add() altre 2 volte passandogli i valori 2 e 3. Creo poi una seconda lista di tipo ListAdapter e aggiungo 2 e 3 al suo interno. 
+    * Infine passandogli list2 al metodo containsAll() valuto se list contiene tutti gli elementi di list2.
     * 
     * Precondition:
     * 
-    * Postcondition
+    * Postcondition: list contenente 3 elementi e list2 contenente 2 elementi.
     * 
-    * Expected results: 
+    * Expected results: true
     */
     @Test
     public void containsAll() {
@@ -254,17 +267,18 @@ public class ListAdapterTest {
 
     
     /**
-    * Summary: 
+    * Summary: Test che verifica il funzionamento del metodo ' public boolean equals(Object o)'.
     * 
-    * Test design: 
+    * Test design: Test che valuta se dopo aver creato e inizializzato due liste la prima è uguale alla seconda.
     * 
-    * Test description:
+    * Test description: Creo una lista di tipo ListAdapter e aggiungo i valori 1 e 2, poi creo una seconda lista list2 e aggiungo 
+    * nuovamente 1 e 2. Infine controllo se list ha gli stessi elementi di list2 e viceversa.
     * 
     * Precondition:
     * 
-    * Postcondition
+    * Postcondition: 2 liste con stessi elementi.
     * 
-    * Expected results: 
+    * Expected results: true, true.
     */
     @Test
     public void equals() {
@@ -280,17 +294,18 @@ public class ListAdapterTest {
 
     
     /**
-    * Summary: 
+    * Summary: Test che controlla il funzionamento del metodo 'public Object get(int index)'
     * 
-    * Test design: 
+    * Test design: Test che valuta se dopo aver creato e inizializzato una lista, l'elemento aggiunto si trova in posizione 0.
     * 
-    * Test description:
+    * Test description: creo variabile costante add di valore 1, creo una lista di tipo ListAdapter, passo il valore al metodo add()
+    * e controllo che in posizione 0 sia presente il valore add tramite metodo get().
     * 
     * Precondition:
     * 
-    * Postcondition
+    * Postcondition: lista con 1 elemento.
     * 
-    * Expected results: 
+    * Expected results: add
     */
     @Test
     public void get() {
@@ -302,17 +317,18 @@ public class ListAdapterTest {
 
     
     /**
-    * Summary: 
+    * Summary: Test che verifica il funzionamento del metodo 'public int hashCode()'.
     * 
-    * Test design: 
+    * Test design: Test che dopo aver creato una lista e aggiunto un elemento restituisce l'hashCode. 
     * 
-    * Test description:
+    * Test description: creo variabile costante add di valore 1, creo una lista di tipo ListAdapter, passo il valore al metodo add(). 
+    * Poi creo una variabile int n=32 e stabilisco se il valore restituito dal metodo hashCode() applicato alla lista è ugaule a 32.
     * 
     * Precondition:
     * 
-    * Postcondition
+    * Postcondition: lista con 1 elemento.
     * 
-    * Expected results: 
+    * Expected results: n
     */
     @Test
     public void testHashCode() {
@@ -326,17 +342,18 @@ public class ListAdapterTest {
 
     
     /**
-    * Summary: 
+    * Summary: Test che verifica il funzionamento del metodo ' public int indexOf(Object o)'
     * 
-    * Test design: 
+    * Test design: Test che dopo aver creato una lista e aggiunto un elemento restituisce l'indice della sua prima occorrenza
     * 
-    * Test description:
+    * Test description: creo variabile costante add di valore 1, creo una lista di tipo ListAdapter, passo il valore al metodo add()
+    * e controllo che add sia in posizione 0 tramite metodo indexOf(add).
     * 
     * Precondition:
     * 
-    * Postcondition
+    * Postcondition: lista con 1 elemento.
     * 
-    * Expected results: 
+    * Expected results: 0
     */
     @Test
     public void indexOF() {
@@ -348,17 +365,18 @@ public class ListAdapterTest {
 
     
     /**
-    * Summary: 
+    * Summary: Test che verifica il funzionamento del metodo ' public boolean isEmpty()'
     * 
-    * Test design: 
+    * Test design: Test che dopo aver creato una lista e aggiunto un elemento controlla che non sia vuota.
     * 
-    * Test description:
+    * Test description: creo variabile costante add di valore 1, creo una lista di tipo ListAdapter, passo il valore al metodo add()
+    * e controllo che la lista non sia vuota tramite il metodo isEmpty() (deve restituire false).
     * 
     * Precondition:
     * 
-    * Postcondition
+    * Postcondition: lista con 1 elemento
     * 
-    * Expected results: 
+    * Expected results: false
     */
     @Test
     public void isEmpty() {
@@ -370,7 +388,7 @@ public class ListAdapterTest {
 
     
     /**
-    * Summary: 
+    * Summary: Test che verifica il funzionamento del metodo 'public HIterator iterator()'
     * 
     * Test design: 
     * 
@@ -378,9 +396,9 @@ public class ListAdapterTest {
     * 
     * Precondition:
     * 
-    * Postcondition
+    * Postcondition:
     * 
-    * Expected results: 
+    * Expected results: it
     */
     @Test
     public void iterator() {
@@ -402,7 +420,7 @@ public class ListAdapterTest {
     * 
     * Postcondition
     * 
-    * Expected results: 
+    * Expected results: 1
     */
     @Test
     public void lastIndexOf() {
@@ -425,7 +443,7 @@ public class ListAdapterTest {
     * 
     * Postcondition
     * 
-    * Expected results: 
+    * Expected results: it
     */
     @Test
     public void ListIterator() {
@@ -447,7 +465,7 @@ public class ListAdapterTest {
     * 
     * Postcondition
     * 
-    * Expected results: 
+    * Expected results: add
     */
     @Test
     public void ListIteratorIndex() {
@@ -469,7 +487,7 @@ public class ListAdapterTest {
     * 
     * Postcondition
     * 
-    * Expected results: 
+    * Expected results: 1,1
     */
     @Test
     public void removeAll() {
@@ -498,7 +516,7 @@ public class ListAdapterTest {
     * 
     * Postcondition
     * 
-    * Expected results: 
+    * Expected results: 2,3,2
     */
     @Test
     public void retainAll() {
@@ -528,7 +546,7 @@ public class ListAdapterTest {
     * 
     * Postcondition
     * 
-    * Expected results: 
+    * Expected results: 3,4
     */
     @Test
     public void set() {
@@ -553,7 +571,7 @@ public class ListAdapterTest {
     * 
     * Postcondition
     * 
-    * Expected results: 
+    * Expected results: 2
     */
     @Test
     public void size() {
@@ -576,7 +594,7 @@ public class ListAdapterTest {
     * 
     * Postcondition
     * 
-    * Expected results: 
+    * Expected results: 5,5,4,2
     */
     @Test
     public void SubList() {
