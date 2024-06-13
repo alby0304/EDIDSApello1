@@ -392,7 +392,7 @@ public class ListAdapterTest {
     * 
     * Test design: 
     * 
-    * Test description:
+    * Test description: 
     * 
     * Precondition:
     * 
@@ -410,15 +410,16 @@ public class ListAdapterTest {
 
     
     /**
-    * Summary: 
+    * Summary: Test che verifica il funzionamento del metodo ' public int lastIndexOf(Object o)'
     * 
-    * Test design: 
+    * Test design: Test che crea una lista e dopo aver aggiunto due volte lo stesso elemento restituisce la sua ultima occorrenza nella lista
     * 
-    * Test description:
+    * Test description: creo variabile costante add di valore 1, creo una lista di tipo ListAdapter, passo il valore al metodo add() 2 volte
+    * e controllo che l'occorrenza dell'ultimo elemento inserito sia 1 tramite metodo lastIndexOf(add).
     * 
     * Precondition:
     * 
-    * Postcondition
+    * Postcondition: lista con 2 elementi
     * 
     * Expected results: 1
     */
@@ -455,7 +456,7 @@ public class ListAdapterTest {
 
     
     /**
-    * Summary: 
+    * Summary: Test che verifica 
     * 
     * Test design: 
     * 
@@ -477,17 +478,24 @@ public class ListAdapterTest {
 
     
     /**
-    * Summary: 
+    * Summary: Test che verifica il corretto funzionamento del metodo ' public boolean removeAll(HCollection c)'
     * 
-    * Test design: 
+    * Test design: Test che crea e inizializza due liste e verifica: 
+    * 1) che vengano cancellati gli elementi della seconda lista contenuti anche nella prima  
+    * 2) il primo elemento dell'array creato
+    * 3) la lunghezza dell'array
     * 
-    * Test description:
+    * Test description: creo una lista di tipo ListAdapter e aggiungo 1, 2, 3. 
+    * Creo una seconda lista e aggiungo 2 e 3. Utilizzo il metodo removeAll(list2) per rimuovere tutti gli elementi della list2 da list
+    * e verifico che sia andata a buon fine l'operazione.
+    * Creo un array contenente tutti gli elementi di list e controllo che il primo elemento sia 1 e inoltre che quest'ultimo sia l'unico presente nell'array
+    * verificando che sia di lunghezza unitaria.
     * 
     * Precondition:
     * 
-    * Postcondition
+    * Postcondition: lista e array con 1 elemento.
     * 
-    * Expected results: 1,1
+    * Expected results:  true, 1, 1
     */
     @Test
     public void removeAll() {
@@ -506,17 +514,24 @@ public class ListAdapterTest {
 
     
     /**
-    * Summary: 
+    * Summary: Test che verifica il corretto funzionamento del metodo 'public boolean retainAll(HCollection c)'
     * 
-    * Test design: 
+    * Test design: Test che crea e inizializza due liste e verifica : 
+    * 1) che vengano cancellati gli elementi della seconda lista  contenuti anche nella prima  
+    * 2) il primo e il secondo elemento dell'array creato
+    * 3) la lunghezza dell'array
     * 
-    * Test description:
+    * Test description: creo una lista di tipo ListAdapter e aggiungo 1, 2, 3. 
+    * Creo una seconda lista e aggiungo 2 e 3. Utilizzo il metodo retainAll(list2) per mantenere tutti gli elementi della list2 in list
+    * e verifico che sia andata a buon fine l'operazione.
+    * Creo un array contenente tutti gli elementi di list e controllo che siano presenti gli elementi rimasti in list (in questo caso 2 e 3)
+    * e inoltre che questi siano gli unici elementi dell'array verificando che abbia la lunghezza prestabilità (in questo caso 2).
     * 
     * Precondition:
     * 
-    * Postcondition
+    * Postcondition: list e array con 2 elementi
     * 
-    * Expected results: 2,3,2
+    * Expected results: true 2,3,2
     */
     @Test
     public void retainAll() {
@@ -536,16 +551,19 @@ public class ListAdapterTest {
 
     
     /**
-    * Summary: 
+    * Summary: Test che verifica il corretto funzionamento del metodo 'public Object set(int index, Object element)'
     * 
-    * Test design: 
+    * Test design: Test che controlla che avvenga la corretta sostituzione di un elemento nella lista con l'elemento passato per parametro a set().
     * 
-    * Test description:
+    * Test description: creo una lista di tipo ListAdapter e aggiungo 3 elementi 1, 2, 3. 
+    * Richiamo il metodo set() e sostituisco l'elemento in posizione 2 (3) con l'elemento passato come parametro (4). 
+    * L'elemento di tipo object restituito lo chiamo remove e valuto che valga esattamente quanto l'elemento precedentemente presente nella list. 
+    * Infine controllo sia avvenuta la corretta sostituzione dell'elemento tramite metodo get(2).
     * 
     * Precondition:
     * 
-    * Postcondition
-    * 
+    * Postcondition: list con 3 elementi (1, 2, 4).
+    *
     * Expected results: 3,4
     */
     @Test
@@ -561,15 +579,16 @@ public class ListAdapterTest {
 
     
     /**
-    * Summary: 
+    * Summary: Test che verifica il corretto funzionamento del metodo 'public int size()'
     * 
-    * Test design: 
+    * Test design: Test che crea una lista, aggiunge due elementi e verifica che siano effettivamente presenti al suo interno
     * 
-    * Test description:
+    * Test description: creo variabile costante add di valore 1, creo una lista di tipo ListAdapter, passo il valore al metodo add() 2 volte
+    * e controllo che il numero di elementi inseriti sia 2
     * 
     * Precondition:
     * 
-    * Postcondition
+    * Postcondition: list con 2 elementi uguali
     * 
     * Expected results: 2
     */
