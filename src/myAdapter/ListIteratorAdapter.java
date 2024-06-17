@@ -51,14 +51,17 @@ public class ListIteratorAdapter implements HListIterator
     @Override
     public Object next(){
         if(!hasNext()){
-            throw  new NoSuchElementException();
+            throw new NoSuchElementException();
         }
         return l.get(index++); //incremento viene fatto post
     }
 
-    @Override //TODO rifare
+    @Override
     public void remove(){
-        l.get(index);
+        if(index<=min)
+            throw new IllegalStateException();
+        index--;
+        l.remove(index);
     }
     
     

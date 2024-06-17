@@ -3,6 +3,7 @@
  */
 package myAdapter;
 
+import java.util.NoSuchElementException;
 import java.util.Vector;
 
 public class ListAdapter implements HList {
@@ -45,6 +46,7 @@ public class ListAdapter implements HList {
     }
 
     public void clear() {
+
         v.removeAllElements();
     }
 
@@ -278,12 +280,11 @@ public class ListAdapter implements HList {
          * Override HColletion
          * 
          */
-
         private boolean check(int index) {
-            if (index >= min && index < max) {
+            if (min + index >= min && min + index < max) {
                 return true;
             }
-            return false;
+            throw new IndexOutOfBoundsException();
         }
 
         /*
@@ -296,26 +297,10 @@ public class ListAdapter implements HList {
             return true;
         }
 
-        // @Override
-        // public boolean addAll(HCollection c) { //TODO done
-        // if (c == null) {
-        // throw new NullPointerException();
-        // }
-        // boolean modified = false;
-        // Object[] items = c.toArray();
-        // for (int i = 0; i < items.length; i++) {
-        // boolean change = add(items[i]);
-        // if (change) {
-        // modified = true;
-        // }
-        // }
-        // return modified;
-        // }
-
         @Override
         public void clear() { // TODO done
-            for (int i = max - 1; i >= min; i--) {
-                list.remove(i);
+            for (int i = max-1; i >= min; i--) {
+                remove(i);
             }
         }
 
@@ -330,40 +315,6 @@ public class ListAdapter implements HList {
             return false;
         }
 
-        // Override non necessario
-        // public boolean containsAll(HCollection c) {
-        // Object[] items = c.toArray();
-        // for (int i = 0; i < items.length; i++) {
-        // if (!contains(items[i])) {
-        // return false;
-        // }
-        // }
-        // return true;
-        // }
-
-        // public boolean equals(Object o) {
-        // if (o == this) {
-        // return true;
-        // }
-        // if (!(o instanceof HCollection)) {
-        // return false;
-        // }
-        // HCollection c = (HCollection) o;
-        // if (c.size() != size()) {
-        // return false;
-        // }
-        // return containsAll(c);
-        // }
-
-        // public int hashCode() {
-        // int hashCode = 1;
-        // HIterator i = this.iterator();
-        // while (i.hasNext()) {
-        // Object obj = i.next();
-        // hashCode = 31 * hashCode + (obj == null ? 0 : obj.hashCode());
-        // }
-        // return hashCode;
-        // }
         @Override
         public boolean isEmpty() {
             return min == max;
@@ -479,9 +430,7 @@ public class ListAdapter implements HList {
 
         @Override
         public Object get(int index) { // TODO done
-            if (!(check(index))) {
-                throw new IndexOutOfBoundsException();
-            }
+            check(index);
             return list.get(min + index);
         }
 
@@ -525,9 +474,11 @@ public class ListAdapter implements HList {
         }
 
         @Override
-        public Object remove(int index) { // TODO done
+        public Object remove(int index) {// TODO done
+            check(index);
             Object o = get(index);
             list.remove(min + index);
+            max--;
             return o;
         }
 
@@ -540,7 +491,7 @@ public class ListAdapter implements HList {
         }
 
         public HList subList(int fromIndex, int toIndex) {
-            if (fromIndex < 0 || toIndex > size() || fromIndex > toIndex) {
+            if (fromIndex < min || toIndex > max || fromIndex > toIndex) {
                 throw new IndexOutOfBoundsException();
             }
             SubList sub = new SubList(min + fromIndex, min + toIndex, this);

@@ -5,6 +5,8 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+import java.util.NoSuchElementException;
+
 public class ListAdapterTest {
 
     ListAdapter list;
@@ -17,7 +19,7 @@ public class ListAdapterTest {
 
 
    /**
-    * SUMMARY: Test che prova il funzionamento del metodo add() di ListAdapter aggiungendo un valore di tipo intero.
+    * SUMMARY: Test che prova il funzionamento del metodo 'public boolean add(Object o)' di ListAdapter aggiungendo un valore di tipo intero.
     * 
     * TEST DESIGN: Test che valuta se in seguito alla creazione di una lista e all'invocazione di list.add(add) l'elemento è effettivamente stato inserito
     * 
@@ -38,6 +40,71 @@ public class ListAdapterTest {
         assertEquals(add, list.get(0));
     }
 
+
+    /**
+     * SUMMARY: Test che valuta se il metodo 'public boolean add(Object o)' lancia un' eccezione 
+     * 
+     * TEST DESIGN: Test che valuta se in seguito all'aggiunta di un valore null alla lista viene lanciata un'eccezione 
+     * 
+     * TEST DESCRIPTION: invoco il metodo add() passando come parametro un null e mi aspetto il lancio di un'eccezione
+     * 
+     * PRECONDITION: Esistenza di una lista 
+     *  
+     * POSTCONDITION: Lancio di un'eccezione 
+     * 
+     * EXPECTED RESULTS: NullPointerException     
+     */
+    @Test(expected = NullPointerException.class)
+    public void addNullPointerException() {
+        assertTrue(list.add(null));
+    }
+
+    
+    /**
+     * SUMMARY: Test che valuta il funzionamento del metodo 'public void add(int index, Object element)' 
+     * 
+     * TEST DESIGN: Test che valuta se in seguito all'inserimento di un elemento nella lista e all'invocazione di list.add(0,add) 
+     * l'elemento è effettivamente stato inserito nella posizione indicata
+     * 
+     * 
+     * TEST DESCRIPTION: creo variabile costante add di valore 1, creo una lista di tipo ListAdapter, passo il valore al metodo add()
+     * e stabilisco se è avvenuta l'aggiunta.
+     * 
+     * PRECONDITION: esistenza di una list vuota.
+     * 
+     * POSTCONDITION: lista con un elemento aggiunto.
+     * 
+     * EXPECTED RESULTS: add
+     */
+    @Test
+    public void addIndex() {
+        final int add = 1;
+        
+        list.add(0, add);
+        assertEquals(add, list.get(0));
+    }
+    
+    
+    /**
+     * SUMMARY: Test che valuta il funzionamento del metodo 'public void add(int index, Object element)'
+     * 
+     * TEST DESIGN: Test che valuta se in seguito alla creazione di una lista e all'invocazione di list.add(1,null) viene lanciata un'eccezione
+     * 
+     * TEST DESCRIPTION: invoco il metodo add(1,null) e mi aspetto che venga lanciata un'eccezione 
+     * 
+     * PRECONDITION: esistenza di una list vuota.
+     * 
+     * POSTCONDITION: lancio di un'eccezione 
+     * 
+     * EXPECTED RESULTS: NullPointerException
+     */
+    @Test(expected = NullPointerException.class)
+    public void addAtIndexNullPointerException() {
+        list.add(1, null);
+    }
+
+
+   
 
     /**
     * SUMMARY: Test che valuta l'aggiunta di variabili di vario tipo all'interno della stessa lista. 
@@ -88,7 +155,7 @@ public class ListAdapterTest {
 
 
     /**
-    * SUMMARY: Test che valuta il funzionamento del metodo remove() di ListAdapter su un elemento della lista in seguito alla sua aggiunta.
+    * SUMMARY: Test che valuta il funzionamento del metodo 'public boolean remove(Object o)' su un elemento della lista in seguito alla sua aggiunta.
     * 
     * TEST DESIGN: Test che valuta se, in seguito alla creazione di una lista di tipo ListAdapter e all'inserimento di un elemento, la sua rimozione viene eseguita.
     * 
@@ -155,13 +222,33 @@ public class ListAdapterTest {
         final int[] giusto = { 1, 2, 3 };
         
         list.add(add);
-        ListAdapter list2 = new ListAdapter();
+        HCollection list2 = new ListAdapter();
         list2.add(2);
         list2.add(3);
         list.addAll(list2);
         assertEquals(giusto[0], list.get(0));
         assertEquals(giusto[1], list.get(1));
         assertEquals(giusto[2], list.get(2));
+    }
+
+    /** 
+     * SUMMARY: Test che valuta il funzionamento del metodo 'public boolean addAll(HCollection c)' che dovrebbe lanciare un'eccezione
+     * 
+     * TEST DESIGN: Test che in seguito alla creazione di una HCollection e all'invocazione del metodo addAll()
+     * lancia una eccezione 
+     * 
+     * TEST DESCRIPTION: Creo una collezione che inizializzo a null e invoco addAll() che lancia un'eccezione  
+     * 
+     * PRECONDITION: esistenza di una collezione 
+     * 
+     * POSTCONDITION: lancio di un'eccezione 
+     * 
+     * EXPECTED RESULTS: NullPointerException
+     */
+    @Test(expected = NullPointerException.class)
+    public void addAllNullPointerException() {
+        HCollection collection = null;
+        list.addAll(collection);
     }
 
 
@@ -198,6 +285,51 @@ public class ListAdapterTest {
 
     }
 
+    
+    /**
+     * SUMMARY: Test che valuta il funzionamento del metodo 'public boolean addAll(int index, HCollection c)' che dovrebbe lanciare un'eccezione
+     * 
+     * TEST DESIGN: Test che in seguito all'invocazione del metodo addAll(0,null) lancia una eccezione 
+     * 
+     * TEST DESCRIPTION: Invoco il metodo addAll(0,null) con paramtri l'indice 0 e null al posto di una HCollection e mi aspetto
+     * il lancio di un'eccezione
+     * 
+     * PRECONDITION: esistenza di una lista 
+     * 
+     * POSTCONDITION: lancio di un'eccezione 
+     * 
+     * EXPECTED RESULTS: NullPointerException
+     */
+    @Test(expected = NullPointerException.class)
+    public void addAllAtIndexNullPointerException() {
+        list.addAll(0, null);
+    }
+
+    //TODO: da visionare
+    /**
+     * SUMMARY: Test che valuta il funzionamento del metodo 'public boolean addAll(int index, HCollection c)' 
+     * che dovrebbe lanciare un'eccezione
+     * 
+     * TEST DESIGN: Test che in seguito alla creazione di una HCollection e all'invocazione di due metodi add() e del metodo addAll(-1,c)
+     * lancia una eccezione 
+     * 
+     * TEST DESCRIPTION: Creo una collezione che inizializzo 
+     * 
+     * PRECONDITION: esistenza di una collezione 
+     * 
+     * POSTCONDITION: lancio di un'eccezione 
+     * 
+     * EXPECTED RESULTS: IndexOutOfBoundsException
+     */
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void testAddAllAtIndexIndexOutOfBoundsException() {
+        HCollection c =  new ListAdapter();
+        c.add(1);
+        c.add(2);
+
+        list.addAll(-1, c);
+    }
+
 
     /**
     * SUMMARY: Test che valuta il funzionamento del metodo 'public void clear()' di ListAdapter.
@@ -222,7 +354,7 @@ public class ListAdapterTest {
         assertEquals(0, list.size());
     }
 
-    
+
     /**
     * SUMMARY: Test che verifica il funzionamento del metodo 'public void contains(Object o)' in seguito all'aggiunta di un elemento add.
     * 
@@ -245,6 +377,24 @@ public class ListAdapterTest {
         assertEquals(true, list.contains(1));
     }
 
+    /**
+     * SUMMARY: Test che valuta il funzionamento del metodo 'public boolean contains(Object o)'
+     * 
+     * TEST DESIGN: Test che valuta se invocando il metodo contains() con un parametro nullo viene lanciata un'eccezione 
+     * 
+     * TEST DESCRIPTION: Invoco il metodo contains() su una lista e passo come parametro un null 
+     * aspettando che venga lanciata una eccezione 
+     * 
+     * PRECONDITION: Esistenza di una lista 
+     * 
+     * POSTCONDITION: Lancio di una eccezione 
+     * 
+     * EXPECTED RESULTS: NullPointerException
+     */
+    @Test(expected = NullPointerException.class)
+    public void containsNullPointerException() {
+        assertTrue(list.contains(null));
+    }
     
     /**
     * SUMMARY: Test che valuta il funzionamento del metodo 'public boolean containsAll(HCollection c)' di ListAdapter.
@@ -268,15 +418,60 @@ public class ListAdapterTest {
         list.add(add);
         list.add(2);
         list.add(3);
-        ListAdapter list2 = new ListAdapter();
+        HCollection list2 = new ListAdapter();
         list2.add(2);
         list2.add(3);
         assertEquals(true, list.containsAll(list2));
     }
-
     
     /**
-    * SUMMARY: Test che verifica il funzionamento del metodo ' public boolean equals(Object o)' di ListAdapter.
+     * SUMMARY: Test che valuta il funzionamento del metodo 'public boolean containsAll(HCollection c)' di ListAdapter e verifica che questa non 
+     * possa contenere elementi nulli.
+     * 
+     * TEST DESIGN: Test che dopo aver creato una collezione ed aggiunto tre elementi: due valori int e un null 
+     * invocando il metodo containsAll() verifica che venga lanciata una eccezione.
+     * 
+     * TEST DESCRIPTION: Creo una collection di tipo HCollection, aggiungo 1, null e 2 e infine verifico che venga lanciata
+     * un'eccezione NullPointerException.
+     * 
+     * PRECONDITION: Esistenza di una collezione.
+     * 
+     * POSTCONDITION: Lancio di un'eccezione.
+     * 
+     * EXPECTED RESULTS: NullPointerException
+     */
+    @Test(expected = NullPointerException.class)
+    public void containsAllElementNullPointerException() {
+        HCollection collection = new ListAdapter();
+        collection.add(1);
+        collection.add(null);
+        collection.add(2);
+        assertTrue(list.containsAll(collection));
+    }
+
+    /**
+     * SUMMARY: Test che verifica il funzionamento del metodo 'public boolean containsAll(HCollection c)' di ListAdapter e in particolare che controlla che 
+     * venga lanciata l'eccezione NullPointerException.
+     * 
+     * TEST DESIGN: Test che  dopo aver creato e iniziallizzato a null una collezione verifica che venga lanciata una eccezione.
+     * 
+     * TEST DESCRIPTION: Inizializzo la collection a null e verifico che mi venga lanciata l'eccezione 
+     * NullPointerException.
+     * 
+     * PRECONDITION: Esistenza di una collezione 
+     * 
+     * POSTCONDITION: Lancio di una eccezione
+     * 
+     * EXPECTED RESULTS: NullPointerException   
+     */
+    @Test(expected = NullPointerException.class)
+    public void containsAllCollectionNullPointerException() {
+        HCollection collection = null;
+        assertTrue(list.containsAll(collection));
+    }
+    
+    /**
+    * SUMMARY: Test che verifica il funzionamento del metodo ' public boolean equals(Object o)' di ListAdapter e confronta 2 liste.
     * 
     * TEST DESIGN: Test che valuta se dopo aver creato e inizializzato due liste la prima è uguale alla seconda.
     * 
@@ -300,7 +495,8 @@ public class ListAdapterTest {
         assertEquals(true, list.equals(list));
         assertEquals(true, list.equals(list2));
     }
-
+    
+    
     
     /**
     * SUMMARY: Test che controlla il funzionamento del metodo 'public Object get(int index)' di ListAdapter.
@@ -322,6 +518,70 @@ public class ListAdapterTest {
         
         list.add(add);
         assertEquals(add, list.get(0));
+    }
+
+    
+    /**
+     * SUMMARY: Test che verifica il funzionamento del metodo ' public Object get(int index)' di ListAdapter che dovrebbe lanciare
+     * IndexOutOfBoundsException
+     * 
+     * TEST DESIGN: Test che valuta se in seguito all'invocazione del metodo get() passandogli un indice negativo in una lista vuota viene lanciata un'eccezione
+     * 
+     * TEST DESCRIPTION: Creo una lista vuota, richiamo il metodo get e passo l'indice -1. Verifico quindi che venga lanciata un'eccezione IndexOutOfBoundsException.
+     * 
+     * PRECONDITION: esistenza di una lista vuota.
+     * 
+     * POSTCONDITION: lancio di un'eccezione.
+     * 
+     * EXPECTED RESULTS: IndexOutOfBoundsException.
+     */
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void getIndexOutOfBoundsException() {
+        list.get(-1);
+    }
+
+
+    
+    /**
+     * SUMMARY: Test che verifica il funzionamento del metodo 'public boolean remove(Object o)' di ListAdapter
+     * 
+     * TEST DESIGN: Test che valuta se in seguito all'aggiunta e alla rimoazione di un elemento da una lista inizialmente vuota 
+     * questa torna ad esserlo 
+     * 
+     * TEST DESCRIPTION: Aggiungo un elemento alla lista e verifico che l'elemento mi venga rimosso tramite metodo remove() e che venga restituito true 
+     * se prima della rimozione la lista conteneva l'elemento. Infine verifico che la lista sia vuota dopo la rimozione.
+     * 
+     * PRECONDITION: esistenza di una lista vuota
+     * 
+     * POSTCONDITION: esistenza di una lista vuota
+     * 
+     * EXPECTED RESULTS: 0
+     */
+    @Test
+    public void remove() {
+        list.add("elemento");
+        assertTrue(list.remove("elemento"));
+        assertEquals(0, list.size());
+    }
+
+    
+    /**
+     * SUMMARY: Test che verifica il funzionamento del metodo ' public boolean remove(Object o)' di ListAdapter
+     * 
+     * TEST DESIGN: Test che valuta che il metodo remove() a cui è passato come parametro un null lanci un'eccezione 
+     * 
+     * TEST DESCRIPTION: Verifico che richiamando il metodo remove() e passandogli null, venga lanciata l'eccezione
+     * NullPointerException.
+     * 
+     * PRECONDITION: esistenza di una lista vuota
+     * 
+     * POSTCONDITION: lancio di un'eccezione
+     * 
+     * EXPECTED RESULTS: IndexOutOfBoundsException
+     */
+    @Test(expected = NullPointerException.class)
+    public void removeNullPointerException() {
+        assertTrue(list.remove(null));
     }
 
     
@@ -370,6 +630,27 @@ public class ListAdapterTest {
         
         list.add(add);
         assertEquals(0, list.indexOf(add));
+    }
+
+    
+    /**
+     * SUMMARY: Test che verifica il funzionamento del metodo 'public int indexOf(Object o)' di ListAdapter 
+     * che dovrebbe lanciare un'eccezione.
+     * 
+     * TEST DESIGN: Test che verifica se in seguito all'invocazione del metodo indexOf() a cui e passato un null 
+     * viene lanciata l'eccezione NullPointerException.
+     * 
+     * TEST DESCRIPTION: Verifico che passando un oggetto null a indexOf() venga lanciata l'eccezione NullPointerException.
+     * 
+     * PRECONDITION: esistenza di una lista vuota.
+     * 
+     * POSTCONDITION: lancio di un'eccezione.
+     * 
+     * EXPECTED RESULTS: NullPointerException
+     */
+    @Test(expected = NullPointerException.class)
+    public void indexOfNullPointerException() {
+        assertEquals(0, list.indexOf(null));
     }
 
     
@@ -439,6 +720,27 @@ public class ListAdapterTest {
         list.add(add);
         list.add(add);
         assertEquals(1, list.lastIndexOf(add));
+    }
+
+    
+    /**
+     * SUMMARY: Test che verifica il funzionamento del metodo 'public int lastIndexOf(Object o)' di ListAdapter 
+     * che dovrebbe lanciare un'eccezione 
+     * 
+     * TEST DESIGN: Test che verifica se in seguito all'invocazione di lastIndexOf() a cui è passato come parametro un null
+     * viene lanciata l'eccezione NullPointerException
+     * 
+     * TEST DESCRIPTION: Verifico che passando un oggetto null a lastIndexOf() venga lanciata l'eccezione NullPointerException.
+     * 
+     * PRECONDITION: esistenza di una lista vuota
+     * 
+     * POSTCONDITION: lancio di un'eccezione
+     * 
+     * EXPECTED RESULTS: NullPointerException
+     */
+    @Test(expected = NullPointerException.class)
+    public void lastIndexOfNull() {
+        assertEquals(0, list.lastIndexOf(null));
     }
 
     
@@ -520,6 +822,30 @@ public class ListAdapterTest {
         assertEquals(1, vett[0]);
         assertEquals(1, vett.length);
     }
+    
+    
+    /**
+     * SUMMARY: Test che valuta il funzionamento del metodo 'public boolean removeAll(HCollection c)' di ListAAdapter
+     * che dovrebbe lanciare un'eccezione
+     * 
+     * TEST DESIGN: Test chee crea e inizializza una collezione a null e verifica che invocando removeAll() venga lanciata l'eccezione
+     * NullPointerException 
+     * 
+     * TEST DESCRIPTION: inizializzo una collection c a null e richiamo il metodo removeAll().
+     * Verifico che venga lanciata un'eccezione NullPointerException.ovou
+     *       
+     * PRECONDITION: esistenza di una lista vuota.
+     * 
+     * POSTCONDITION: Lancio di un'eccezione.
+     * 
+     * EXPECTED RESULTS: NullPointerException
+     * 
+     */
+    @Test(expected = NullPointerException.class)
+    public void removeAllNullPointerException() {
+        HCollection c = null;
+        list.removeAll(c);
+    }
 
     
     /**
@@ -560,6 +886,29 @@ public class ListAdapterTest {
 
     
     /**
+     * SUMMARY: Test che verifica il funzionamento del metodo 'public boolean retainAll(HCollection c)' di ListAdapter 
+     * che dovrebbe lanciare un'eccezione
+     * 
+     * TEST DESIGN: Test che dopo aver creato e inizializzato una collezione con null verifica che retainAll() 
+     * lanci l'eccezione NullPointerException
+     * 
+     * TEST DESCRIPTION: inizializzo una collection c a null e richiamo il metodo retainAll().
+     * Verifico che venga lanciata un'eccezione NullPointerException.
+     * 
+     * PRECONDITION: esistenza di una lista vuota.
+     * 
+     * POSTCONDITION: lancio di un'eccezione.
+     * 
+     * EXPECTED RESULTS: NullPointerException
+     */
+    @Test(expected = NullPointerException.class)
+    public void retainAllNullPointerException() {
+        HCollection c = null;
+        list.retainAll(c);
+    }
+
+    
+    /**
     * SUMMARY: Test che verifica il corretto funzionamento del metodo 'public Object set(int index, Object element)' di ListAdapter.
     * 
     * TEST DESIGN: Test che controlla che avvenga la corretta sostituzione di un elemento nella lista con l'elemento passato per parametro a set().
@@ -588,6 +937,50 @@ public class ListAdapterTest {
 
     
     /**
+     * SUMMARY: Test che verifica il funzionamento del metodo 'public Object set(int index, Object element)' di ListAdapter 
+     * che dovrebbe lanciare un'eccezione
+     * 
+     * TEST DESIGN: Test che aggiunge un elemento ad una lista e dopo aver invocato set() verifica che venga lanciata un'eccezione
+     * 
+     * TEST DESCRIPTION: Aggiungo 1 alla lista e richiamo il metodo set() passandogli null come elemento da inserire nella lista alla posizione 0.
+     * Verifico che venga lanciata un'eccezione NullPointerException.
+     * 
+     * PRECONDITION: esistenza di una list vuota.
+     * 
+     * POSTCONDITION: list vuota 
+     *
+     * EXPECTED RESULTS: NullPointerException
+     */
+    @Test(expected = NullPointerException.class)
+    public void setNullPointerException() {
+        list.add(1);
+        list.set(0, null);
+    }
+
+
+    /**
+     * SUMMARY: Test che verifica il funzionamento del metodo 'public Object set(int index, Object element)' di ListAdapter 
+     * che dovrebbe lanciare un'eccezione
+     * 
+     * TEST DESIGN: Test che aggiunge un elemento ad una lista e dopo aver invocato set() verifica che venga lanciata 
+     * 
+     * TEST DESCRIPTION: Aggiungo 1 alla lista e richiamo il metodo set() passandogli 2 come elemento da inserire nella lista alla posizione -1.
+     * Verifico che venga lanciata un'eccezione ArrayIndexOutOfBoundsException.
+     * 
+     * PRECONDITION: esistenza di una list vuota.
+     * 
+     * POSTCONDITION: lancio di un'eccezione
+     *
+     * EXPECTED RESULTS: ArrayIndexOutOfBoundsException
+     */
+    @Test(expected = ArrayIndexOutOfBoundsException.class)
+    public void setArrayIndexOutOfBoundsException() {
+        list.add("1");
+        list.set(-1, "2");
+    }
+
+    
+    /**
     * SUMMARY: Test che verifica il corretto funzionamento del metodo 'public int size()' di ListAdapter.
     * 
     * TEST DESIGN: Test che crea una lista, aggiunge due elementi e verifica che siano effettivamente presenti al suo interno
@@ -611,38 +1004,7 @@ public class ListAdapterTest {
     }
 
 
-    /**
-     * SUMMARY: Test che verifica il funzionamento del metodo subList() di ListAdapter che crea una sottolista di una list principale precedentemente creata. 
-     * 
-     * TEST DESIGN: Test che dopo aver aggiunto 3 elementi ad una list, verifica il funzionamento
-     * del metodo subList() che crea una sottolista di capacità minore ma che possiede nelle relative posizioni gli stessi elementi 
-     * della lista principale. Verifico quindi che aggiungendo elementi alla subList, la modifica avvenga pure all'interno della list principale.
-     * 
-     * TEST DESCRIPTION: Creo una list di tipo ListAdapter, aggiungo 3 elementi 1, 2, 3.
-     * Richiamo il metodo subList(0,1) che restituisce un oggetto di tipo HList che chiamo sub e
-     * aggiungo 4. Aggiungo poi il valore 5 in posizione 1. Verifico quindi che in posizione 1 di sub ci sia 
-     * il valore 5, inoltre verifico che anche in list in posizione 1 ci sia 5, in posizione 2 ci sia 4 e in posizione 3 ci sia 2.
-     * 
-     * PRECONDITION: esistenza di una list vuota.
-     * 
-     * POSTCONDITION: list con 5 elementi(1,5,4,2,3) e subList con 3 elementi (1,5,4)
-     * 
-     * EXPECTED RESULTS: 5,5,4,2
-     */
-    @Test
-    public void SubList() {
-        
-        list.add(1);
-        list.add(2);
-        list.add(3);
-        HList sub = list.subList(0, 1);
-        sub.add(4);
-        sub.add(1, 5);
-        assertEquals(5, sub.get(1));
-        assertEquals(5, list.get(1));
-        assertEquals(4, list.get(2));
-        assertEquals(2, list.get(3));
-    }
+    
     
     /**
      * SUMMARY: Test che valuta il funzionamento del metodo toArray() di ListAdapter.
@@ -699,37 +1061,415 @@ public class ListAdapterTest {
         assertEquals(list.get(2), fine[2]);
     }
 
+
+    /**
+     * SUMMARY: Test che verifica il funzionamento del metodo subList() di ListAdapter che crea una sottolista di una list principale precedentemente creata. 
+     * 
+     * TEST DESIGN: Test che dopo aver aggiunto 3 elementi ad una list, verifica il funzionamento
+     * del metodo subList() che crea una sottolista di capacità minore ma che possiede nelle relative posizioni gli stessi elementi 
+     * della lista principale. Verifico quindi che aggiungendo elementi alla subList, la modifica avvenga pure all'interno della list principale.
+     * 
+     * TEST DESCRIPTION: Creo una list di tipo ListAdapter, aggiungo 3 elementi 1, 2, 3.
+     * Richiamo il metodo subList(0,1) che restituisce un oggetto di tipo HList che chiamo sub e
+     * aggiungo 4. Aggiungo poi il valore 5 in posizione 1. Verifico quindi che in posizione 1 di sub ci sia 
+     * il valore 5, inoltre verifico che anche in list in posizione 1 ci sia 5, in posizione 2 ci sia 4 e in posizione 3 ci sia 2.
+     * 
+     * PRECONDITION: esistenza di una list vuota.
+     * 
+     * POSTCONDITION: list con 5 elementi(1,5,4,2,3) e subList con 3 elementi (1,5,4)
+     * 
+     * EXPECTED RESULTS: 5,5,4,2
+     */
+    @Test
+    public void SubList() {
+        
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        HList sub = list.subList(0, 1);
+        sub.add(4);
+        sub.add(1, 5);
+        assertEquals(5, sub.get(1));
+        assertEquals(5, list.get(1));
+        assertEquals(4, list.get(2));
+        assertEquals(2, list.get(3));
+    }
+
+    //TODO: da visionare
+    /**
+     * SUMMARY: Test che verifica il funzionamento del metodo subList() di ListAdapter che crea una sottolista di una list principale precedentemente creata. 
+     * 
+     * TEST DESIGN: Test che dopo aver aggiunto 3 elementi ad una list, verifica il funzionamento
+     * del metodo subList() che crea una sottolista di capacità minore ma che possiede nelle relative posizioni gli stessi elementi 
+     * della lista principale. Verifico quindi che aggiungendo elementi alla subList, la modifica avvenga pure all'interno della list principale.
+     * 
+     * TEST DESCRIPTION: Creo una list di tipo ListAdapter, aggiungo 3 elementi 1, 2, 3.
+     * Richiamo il metodo subList(0,1) che restituisce un oggetto di tipo HList che chiamo sub e
+     * aggiungo 4. Aggiungo poi il valore 5 in posizione 1. Verifico quindi che in posizione 1 di sub ci sia 
+     * il valore 5, inoltre verifico che anche in list in posizione 1 ci sia 5, in posizione 2 ci sia 4 e in posizione 3 ci sia 2.
+     * 
+     * PRECONDITION: esistenza di una list vuota.
+     * 
+     * POSTCONDITION: list con 5 elementi(1,5,4,2,3) e subList con 3 elementi (1,5,4)
+     * 
+     * EXPECTED RESULTS: 5,5,4,2
+     */
+    @Test
+    public void SubListAdd() {
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
+
+        HList subList = list.subList(2, list.size());
+
+        subList.add(5);
+        assertEquals(5, subList.get(subList.size() - 1));
+        assertEquals(5, list.get(list.size()-1));
+    }
+    
+    //TODO: da visionare
+    /**
+     * SUMMARY: Test che verifica il funzionamento del metodo subList() di ListAdapter che crea una sottolista di una list principale precedentemente creata. 
+     * 
+     * TEST DESIGN: Test che dopo aver aggiunto 3 elementi ad una list, verifica il funzionamento
+     * del metodo subList() che crea una sottolista di capacità minore ma che possiede nelle relative posizioni gli stessi elementi 
+     * della lista principale. Verifico quindi che aggiungendo elementi alla subList, la modifica avvenga pure all'interno della list principale.
+     * 
+     * TEST DESCRIPTION: Creo una list di tipo ListAdapter, aggiungo 3 elementi 1, 2, 3.
+     * Richiamo il metodo subList(0,1) che restituisce un oggetto di tipo HList che chiamo sub e
+     * aggiungo 4. Aggiungo poi il valore 5 in posizione 1. Verifico quindi che in posizione 1 di sub ci sia 
+     * il valore 5, inoltre verifico che anche in list in posizione 1 ci sia 5, in posizione 2 ci sia 4 e in posizione 3 ci sia 2.
+     * 
+     * PRECONDITION: esistenza di una list vuota.
+     * 
+     * POSTCONDITION: list con 5 elementi(1,5,4,2,3) e subList con 3 elementi (1,5,4)
+     * 
+     * EXPECTED RESULTS: 5,5,4,2
+     */
+    @Test
+    public void SubListAddAtIndex() {
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
+        list.add(5);
+
+
+        HList subList = list.subList(2, list.size());
+
+        subList.add(1, 5);
+        assertEquals(5, subList.get(1));
+    }
+
+    //TODO: da visionare
+    /**
+     * SUMMARY: Test che verifica il funzionamento del metodo subList() di ListAdapter che crea una sottolista di una list principale precedentemente creata. 
+     * 
+     * TEST DESIGN: Test che dopo aver aggiunto 3 elementi ad una list, verifica il funzionamento
+     * del metodo subList() che crea una sottolista di capacità minore ma che possiede nelle relative posizioni gli stessi elementi 
+     * della lista principale. Verifico quindi che aggiungendo elementi alla subList, la modifica avvenga pure all'interno della list principale.
+     * 
+     * TEST DESCRIPTION: Creo una list di tipo ListAdapter, aggiungo 3 elementi 1, 2, 3.
+     * Richiamo il metodo subList(0,1) che restituisce un oggetto di tipo HList che chiamo sub e
+     * aggiungo 4. Aggiungo poi il valore 5 in posizione 1. Verifico quindi che in posizione 1 di sub ci sia 
+     * il valore 5, inoltre verifico che anche in list in posizione 1 ci sia 5, in posizione 2 ci sia 4 e in posizione 3 ci sia 2.
+     * 
+     * PRECONDITION: esistenza di una list vuota.
+     * 
+     * POSTCONDITION: list con 5 elementi(1,5,4,2,3) e subList con 3 elementi (1,5,4)
+     * 
+     * EXPECTED RESULTS: 5,5,4,2
+     */
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void SubListAddAtIndexIndexOutOfBoundsException() {
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
+        list.add(5);
+
+        HList subList = list.subList(2, list.size());
+
+        subList.add(-1, 0);
+    }
+
+
+    //TODO: da visionare
+    /**
+     * SUMMARY: Test che verifica il funzionamento del metodo subList() di ListAdapter che crea una sottolista di una list principale precedentemente creata. 
+     * 
+     * TEST DESIGN: Test che dopo aver aggiunto 3 elementi ad una list, verifica il funzionamento
+     * del metodo subList() che crea una sottolista di capacità minore ma che possiede nelle relative posizioni gli stessi elementi 
+     * della lista principale. Verifico quindi che aggiungendo elementi alla subList, la modifica avvenga pure all'interno della list principale.
+     * 
+     * TEST DESCRIPTION: Creo una list di tipo ListAdapter, aggiungo 3 elementi 1, 2, 3.
+     * Richiamo il metodo subList(0,1) che restituisce un oggetto di tipo HList che chiamo sub e
+     * aggiungo 4. Aggiungo poi il valore 5 in posizione 1. Verifico quindi che in posizione 1 di sub ci sia 
+     * il valore 5, inoltre verifico che anche in list in posizione 1 ci sia 5, in posizione 2 ci sia 4 e in posizione 3 ci sia 2.
+     * 
+     * PRECONDITION: esistenza di una list vuota.
+     * 
+     * POSTCONDITION: list con 5 elementi(1,5,4,2,3) e subList con 3 elementi (1,5,4)
+     * 
+     * EXPECTED RESULTS: 5,5,4,2
+     */
+    @Test
+    public void SubListAddAll() {
+        list.add(1);
+        list.add(2);
+        list.add(3);
+
+        HCollection c = new ListAdapter();
+        c.add(4);
+        c.add(5);
+        c.add(6);
+
+        HList subList = list.subList(1, 2);
+
+        assertTrue(subList.addAll(c));
+        assertEquals(6, subList.get(subList.size()-1));
+        assertEquals(3, list.get(list.size()-1));
+        assertEquals(4, list.get(2));
+    }
+    
+    //TODO: da visionare
+    /**
+     * SUMMARY: Test che verifica il funzionamento del metodo addAll() sub . 
+     * 
+     * TEST DESIGN: verficiare il metodo addAll() di sub, creo una collection e la  carico in sub .
+     * 
+     * TEST DESCRIPTION: Creo una lista, riempio,creo un collection, riempio,creo sub list, eseguo addAll 
+     * 
+     * PRECONDITION: esistenza di una list vuota.
+     * 
+     * POSTCONDITION: list con 7 elementi(1,2,5,6,7,3,4) sub (2,5,6,7,3)
+     * 
+     * EXPECTED RESULTS: sopra
+     */
+    @Test
+    public void SubListAddAllAtIndex() {
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
+
+        HCollection c = new ListAdapter();
+        c.add(5);
+        c.add(6);
+        c.add(7);
+
+        HList subList = list.subList(1, list.size()-1);
+        assertTrue(subList.addAll(1, c));
+        assertEquals(3, subList.get(subList.size()-1));
+        assertEquals(4, list.get(list.size()-1));
+    }
+
+    //TODO: da visionare- Tess visto 
+    /**
+     * SUMMARY: Test che verifica il funzionamento del metodo addAll() sub . 
+     * 
+     * TEST DESIGN: verficiare il metodo addAll() di sub, creo una collection e la  carico in sub mi aspetto errore.
+     * 
+     * TEST DESCRIPTION: Creo una lista, riempio,creo un collection, riempio,creo sub list, eseguo addAll verifico errore 
+     * 
+     * PRECONDITION: esistenza di una list vuota.
+     * 
+     * POSTCONDITION: errore, lista invariata 
+     * 
+     * EXPECTED RESULTS: sopra
+     */
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void SubListAddAllAtIndexIndexOutOfBoundsException() {
+        list.add(1);
+        list.add(2);
+        list.add(3);
+
+        HCollection c = new ListAdapter();
+        c.add(4);
+        c.add(5);
+        c.add(6);
+
+        HList subList = list.subList(0, 1);
+        assertTrue(subList.addAll(-1, c));
+    }
+    
+    //TODO: da visionare-Tess visto
+    /**
+     * SUMMARY: Test che verifica il funzionamento del metodo clear() sub . 
+     * 
+     * TEST DESIGN: verficiare il metodo clear() di sub.
+     * 
+     * TEST DESCRIPTION: Creo lista ,riempio, creo sub,verifico che la sub sia vuota e che la dim della lista sia diminuita 
+     * 
+     * PRECONDITION: esistenza di una list vuota.
+     * 
+     * POSTCONDITION: lista esistente 
+     * 
+     * EXPECTED RESULTS: dim list = 2, d
+otos m
+     */
+    @Test
+    public void SubListClear() {
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
+        HList subList = list.subList(0, 2);
+
+        subList.clear();
+        assertEquals(0, subList.size());
+        assertEquals(2, list.size());
+    }
+
+    //TODO: da visionare  - Tess visto
+    /**
+     * SUMMARY: Test che verifica il funzionamento del metodo subList() di ListAdapter che crea una sottolista di una list principale precedentemente creata. 
+     * 
+     * TEST DESIGN: Test che dopo aver aggiunto 4 elementi ad una list, verifica il funzionamento
+     * del metodo subList() che crea una sottolista di capacità minore ma che possiede nelle relative posizioni gli stessi elementi 
+     * della lista principale. Verifico quindi che aggiungendo elementi alla subList, la modifica avvenga pure all'interno della list principale.
+     * 
+     * TEST DESCRIPTION: Creo una list di tipo ListAdapter, aggiungo 4 elementi 1, 2, 3,4.
+     * Richiamo il metodo subList(0,2) che restituisce un oggetto di tipo HList che chiamo subList.
+     * Eseguo il clear, verifico dimensione sub == 0  e dimensione lista = dimensione lista originale - dim sub tolta 
+     * 
+     * PRECONDITION: esistenza di una list vuota.
+     * 
+     * POSTCONDITION: list con 5 elementi(1,5,4,2,3) e subList con 3 elementi (1,5,4)
+     * 
+     * EXPECTED RESULTS: 5,5,4,2
+     */
+    @Test
+    public void SubListContains() {
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        HList subList = list.subList(0, 1);
+        assertTrue(subList.contains(1));
+    }
+
+
+    //TODO: da visionare
+    /**
+     * SUMMARY: Test che verifica il funzionamento del metodo subList() di ListAdapter che crea una sottolista di una list principale precedentemente creata. 
+     * 
+     * TEST DESIGN: Test che dopo aver aggiunto 4 elementi ad una list, verifica il funzionamento
+     * del metodo subList() che crea una sottolista di capacità minore ma che possiede nelle relative posizioni gli stessi elementi 
+     * della lista principale. Verifico quindi che aggiungendo elementi alla subList, la modifica avvenga pure all'interno della list principale.
+     * 
+     * TEST DESCRIPTION: Creo una list di tipo ListAdapter, aggiungo 4 elementi 1, 2, 3,4.
+     * Richiamo il metodo subList(0,2) che restituisce un oggetto di tipo HList che chiamo subList.
+     * Eseguo il clear, verifico dimensione sub == 0  e dimensione lista = dimensione lista originale - dim sub tolta 
+     * 
+     * PRECONDITION: esistenza di una list vuota.
+     * 
+     * POSTCONDITION: list con 5 elementi(1,5,4,2,3) e subList con 3 elementi (1,5,4)
+     * 
+     * EXPECTED RESULTS: 5,5,4,2
+     */
+    @Test
+    public void SubListContainsAll() {
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
+
+        HCollection c = new ListAdapter();
+        c.add(1);
+        c.add(2);
+        c.add(3);
+
+        HList subList = list.subList(0, 3);
+        assertTrue(subList.containsAll(c));
+        c.add(4);
+        assertFalse(subList.containsAll(c));
+    }
+    
+    //TODO: da visionare
+    /**
+     * SUMMARY: Test che verifica il funzionamento del metodo subList() di ListAdapter che crea una sottolista di una list principale precedentemente creata. 
+     * 
+     * TEST DESIGN: Test che dopo aver aggiunto 4 elementi ad una list, verifica il funzionamento
+     * del metodo subList() che crea una sottolista di capacità minore ma che possiede nelle relative posizioni gli stessi elementi 
+     * della lista principale. Verifico quindi che aggiungendo elementi alla subList, la modifica avvenga pure all'interno della list principale.
+     * 
+     * TEST DESCRIPTION: Creo una list di tipo ListAdapter, aggiungo 4 elementi 1, 2, 3,4.
+     * Richiamo il metodo subList(0,2) che restituisce un oggetto di tipo HList che chiamo subList.
+     * Eseguo il clear, verifico dimensione sub == 0  e dimensione lista = dimensione lista originale - dim sub tolta 
+     * 
+     * PRECONDITION: esistenza di una list vuota.
+     * 
+     * POSTCONDITION: list con 5 elementi(1,5,4,2,3) e subList con 3 elementi (1,5,4)
+     * 
+     * EXPECTED RESULTS: 5,5,4,2
+     */
+    @Test(expected = NullPointerException.class)
+    public void SubListContainsAllCollectionNullPointerException() {
+        list.add(1);
+        list.add(2);
+        HList subList = list.subList(0, list.size());
+
+        HCollection c = null;
+
+        assertTrue(subList.containsAll(c));
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void SubListContainsAllElementNullPointerException() {
+        list.add(1);
+        HList subList = list.subList(0, list.size());
+
+        HCollection c = new ListAdapter();
+        c.add(1);
+        c.add(null);
+        c.add(3);
+        assertTrue(subList.containsAll(c));
+    }
+
+
+    @Test
+    public void SubListGet() {
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
+        list.add(5);
+
+        HList subList = list.subList(1, 3);
+
+        assertEquals(3, subList.get(subList.size() - 1));
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void SubListGetIndexOutOfBoundsException() {
+        list.add(1);
+        HList subList = list.subList(0, list.size());
+        assertEquals(1, subList.get(subList.size()));
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void SubListGetIndexOutOfBoundsExceptionSubList() {
+        list.add(1);
+        HList subList = list.subList(0, list.size());
+
+        assertEquals(1, subList.get(subList.size()));
+    }
+
+
+    @Test
+    public void testSetSubList() {
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
+        list.add(5);
+
+        HList subList = list.subList(1, 3);
+
+        subList.set(0, 6);
+        assertEquals(6, subList.get(0));
+        assertEquals(6, list.get(1));
+    }
 }
 
-/*
- * public static void main(String[] args) {
- * 
- * list.add(1);
- * list.add(2);
- * list.add(3);
- * list.add(4);
- * list.add(5);
- * System.out.println("Lista: " + list);
- * ListIteratorAdapter listIterator = new ListIteratorAdapter(list);
- * System.out.println("ListaIterator: " + listIterator);
- * System.out.println("HasNext: " + listIterator.hasNext());
- * System.out.println("NextIndex: " + listIterator.nextIndex());
- * System.out.println("Next: " + listIterator.next());
- * System.out.println("HasPrevious: " + listIterator.hasPrevious());
- * System.out.println("PreviousIndex: " + listIterator.previousIndex());
- * System.out.println("Previous: " + listIterator.previous());
- * System.out.println("Previous2: " + listIterator.previous());
- * System.out.println("Next: " + listIterator.next());
- * listIterator.add(6);
- * System.out.println("Lista: " + list);
- * System.out.println("ListaIterator: " + listIterator);
- * listIterator.set(7);
- * System.out.println("Lista: " + list);
- * System.out.println("ListaIterator: " + listIterator);
- * 
- * for (Object element : list.toArray()) {
- * System.out.println(element);
- * }
- * 
- * }
- */
