@@ -32,6 +32,10 @@ public class ListIteratorAdapter implements HListIterator
         this.min = min;
     }
 
+    
+    /** 
+     * @return boolean
+     */
     /*
     **  Override HIterator
     */
@@ -40,6 +44,10 @@ public class ListIteratorAdapter implements HListIterator
         return index<l.size()+min;
     }
 
+    
+    /** 
+     * @return Object
+     */
     @Override
     public Object next(){
         if(!hasNext()){
@@ -53,6 +61,10 @@ public class ListIteratorAdapter implements HListIterator
         l.get(index);
     }
     
+    
+    /** 
+     * @param o
+     */
     /*
     **  HListIterator
     */

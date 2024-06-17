@@ -5,6 +5,10 @@ import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
 
 public class TestRunner {
+    
+    /** 
+     * @param args
+     */
     public static void main(String[] args) {
         Result result = JUnitCore.runClasses(ListAdapterTest.class);
         for (Failure failure : result.getFailures()) {
