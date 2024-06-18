@@ -1095,24 +1095,24 @@ public class ListAdapterTest {
         assertEquals(2, list.get(3));
     }
 
-    //TODO: da visionare
+    
     /**
-     * SUMMARY: Test che verifica il funzionamento del metodo subList() di ListAdapter che crea una sottolista di una list principale precedentemente creata. 
+     * SUMMARY: Test che verifica il funzionamento del metodo 'public HList subList(int fromIndex, int toIndex)' di ListAdapter
+     * che crea una sottolista di una list principale precedentemente creata. 
      * 
-     * TEST DESIGN: Test che dopo aver aggiunto 3 elementi ad una list, verifica il funzionamento
+     * TEST DESIGN: Test che dopo aver aggiunto 4 elementi ad una list, verifica il funzionamento
      * del metodo subList() che crea una sottolista di capacità minore ma che possiede nelle relative posizioni gli stessi elementi 
      * della lista principale. Verifico quindi che aggiungendo elementi alla subList, la modifica avvenga pure all'interno della list principale.
      * 
-     * TEST DESCRIPTION: Creo una list di tipo ListAdapter, aggiungo 3 elementi 1, 2, 3.
-     * Richiamo il metodo subList(0,1) che restituisce un oggetto di tipo HList che chiamo sub e
-     * aggiungo 4. Aggiungo poi il valore 5 in posizione 1. Verifico quindi che in posizione 1 di sub ci sia 
-     * il valore 5, inoltre verifico che anche in list in posizione 1 ci sia 5, in posizione 2 ci sia 4 e in posizione 3 ci sia 2.
+     * TEST DESCRIPTION: Creo una list di tipo ListAdapter, aggiungo 4 elementi 1, 2, 3, 4.
+     * Richiamo il metodo subList(2,list.size()) che restituisce un oggetto di tipo HList che chiamo subList e aggiungo 5. 
+     * Verifico che l'elemento in ultima posizione sia 5 e che lo sia pure nella lista principale.
      * 
      * PRECONDITION: esistenza di una list vuota.
      * 
-     * POSTCONDITION: list con 5 elementi(1,5,4,2,3) e subList con 3 elementi (1,5,4)
+     * POSTCONDITION: list con 5 elementi(1,2,3,4,5) e subList con 3 elementi (3,4,5)
      * 
-     * EXPECTED RESULTS: 5,5,4,2
+     * EXPECTED RESULTS: 5,5
      */
     @Test
     public void SubListAdd() {
@@ -1128,24 +1128,25 @@ public class ListAdapterTest {
         assertEquals(5, list.get(list.size()-1));
     }
     
-    //TODO: da visionare
+    
     /**
-     * SUMMARY: Test che verifica il funzionamento del metodo subList() di ListAdapter che crea una sottolista di una list principale precedentemente creata. 
+     * SUMMARY: Test che verifica il funzionamento del metodo 'public HList subList(int fromIndex, int toIndex)' di ListAdapter 
+     * che crea una sottolista di una list principale precedentemente creata e prova ad aggiungere un elemento in una precisa posizione. 
      * 
-     * TEST DESIGN: Test che dopo aver aggiunto 3 elementi ad una list, verifica il funzionamento
+     * TEST DESIGN: Test che dopo aver aggiunto 5 elementi ad una list, verifica il funzionamento
      * del metodo subList() che crea una sottolista di capacità minore ma che possiede nelle relative posizioni gli stessi elementi 
-     * della lista principale. Verifico quindi che aggiungendo elementi alla subList, la modifica avvenga pure all'interno della list principale.
+     * della lista principale. Verifico quindi che aggiungendo elementi alla subList, in una specifica posizione , 
+     * la modifica avvenga pure all'interno della list principale.
      * 
-     * TEST DESCRIPTION: Creo una list di tipo ListAdapter, aggiungo 3 elementi 1, 2, 3.
-     * Richiamo il metodo subList(0,1) che restituisce un oggetto di tipo HList che chiamo sub e
-     * aggiungo 4. Aggiungo poi il valore 5 in posizione 1. Verifico quindi che in posizione 1 di sub ci sia 
-     * il valore 5, inoltre verifico che anche in list in posizione 1 ci sia 5, in posizione 2 ci sia 4 e in posizione 3 ci sia 2.
+     * TEST DESCRIPTION: Aggiungo 5 elementi 1, 2, 3, 4, 5.
+     * Richiamo il metodo subList(2,list.size()) che restituisce un oggetto di tipo HList che chiamo sub e
+     * aggiungo 5 in posizione 1. Verifico quindi che in posizione 1 di subList ci sia il valore 5.
      * 
      * PRECONDITION: esistenza di una list vuota.
      * 
-     * POSTCONDITION: list con 5 elementi(1,5,4,2,3) e subList con 3 elementi (1,5,4)
+     * POSTCONDITION: list con 5 elementi(1,2,3,4,5) e subList con 4 elementi (3,5,4,5)
      * 
-     * EXPECTED RESULTS: 5,5,4,2
+     * EXPECTED RESULTS: 5
      */
     @Test
     public void SubListAddAtIndex() {
@@ -1162,27 +1163,27 @@ public class ListAdapterTest {
         assertEquals(5, subList.get(1));
     }
 
-    //TODO: da visionare
+    
     /**
-     * SUMMARY: Test che verifica il funzionamento del metodo subList() di ListAdapter che crea una sottolista di una list principale precedentemente creata. 
+     * SUMMARY: Test che verifica il funzionamento del metodo 'public HList subList(int fromIndex, int toIndex)' di ListAdapter
+     * che crea una sottolista di una list principale precedentemente creata e cerca di accedere ad un elemento. 
      * 
-     * TEST DESIGN: Test che dopo aver aggiunto 3 elementi ad una list, verifica il funzionamento
+     * TEST DESIGN: Test che dopo aver aggiunto 5 elementi ad una list, verifica il funzionamento
      * del metodo subList() che crea una sottolista di capacità minore ma che possiede nelle relative posizioni gli stessi elementi 
-     * della lista principale. Verifico quindi che aggiungendo elementi alla subList, la modifica avvenga pure all'interno della list principale.
+     * della lista principale. Verifico quindi l'accesso ad un elemento della lista tramite indice negativo.
      * 
-     * TEST DESCRIPTION: Creo una list di tipo ListAdapter, aggiungo 3 elementi 1, 2, 3.
-     * Richiamo il metodo subList(0,1) che restituisce un oggetto di tipo HList che chiamo sub e
-     * aggiungo 4. Aggiungo poi il valore 5 in posizione 1. Verifico quindi che in posizione 1 di sub ci sia 
-     * il valore 5, inoltre verifico che anche in list in posizione 1 ci sia 5, in posizione 2 ci sia 4 e in posizione 3 ci sia 2.
+     * TEST DESCRIPTION: Aggiungo 5 elementi 1, 2, 3, 4, 5.
+     * Richiamo il metodo subList(2,list.size()) che restituisce un oggetto di tipo HList che chiamo sub e aggiungo 0 in posizione -1.
+     * Verifico che lanci un'eccezione IndexOutOfBoundsException.
      * 
      * PRECONDITION: esistenza di una list vuota.
      * 
-     * POSTCONDITION: list con 5 elementi(1,5,4,2,3) e subList con 3 elementi (1,5,4)
+     * POSTCONDITION: list con 5 elementi(1,2,3,4,5) e subList con 3 elementi (3,4,5)
      * 
-     * EXPECTED RESULTS: 5,5,4,2
+     * EXPECTED RESULTS: IndexOutOfBoundsException
      */
     @Test(expected = IndexOutOfBoundsException.class)
-    public void SubListAddAtIndexIndexOutOfBoundsException() {
+    public void SubListAddAtIndexOutOfBoundsException() {
         list.add(1);
         list.add(2);
         list.add(3);
@@ -1194,25 +1195,25 @@ public class ListAdapterTest {
         subList.add(-1, 0);
     }
 
-
-    //TODO: da visionare
     /**
-     * SUMMARY: Test che verifica il funzionamento del metodo subList() di ListAdapter che crea una sottolista di una list principale precedentemente creata. 
+     * SUMMARY: Test che verifica le funzionalità del metodo 'public HList subList(int fromIndex, int toIndex)' di ListAdapter
+     * che crea una sottolista di una list principale precedentemente creata. In particolare aggiungo gli elementi di una collection alla subList e controllo 
+     * i cambiamenti effettuati anche a livello del list principale. 
      * 
-     * TEST DESIGN: Test che dopo aver aggiunto 3 elementi ad una list, verifica il funzionamento
+     * TEST DESIGN: Test che dopo aver aggiunto 3 elementi (1,2,3) ad una list e 3 elementi ad una collection c (4,5,6), verifica il funzionamento
      * del metodo subList() che crea una sottolista di capacità minore ma che possiede nelle relative posizioni gli stessi elementi 
-     * della lista principale. Verifico quindi che aggiungendo elementi alla subList, la modifica avvenga pure all'interno della list principale.
+     * della lista principale. Verifico quindi che aggiungendo gli elementi di c alla subList, la modifica avvenga pure all'interno della list principale.
      * 
-     * TEST DESCRIPTION: Creo una list di tipo ListAdapter, aggiungo 3 elementi 1, 2, 3.
-     * Richiamo il metodo subList(0,1) che restituisce un oggetto di tipo HList che chiamo sub e
-     * aggiungo 4. Aggiungo poi il valore 5 in posizione 1. Verifico quindi che in posizione 1 di sub ci sia 
-     * il valore 5, inoltre verifico che anche in list in posizione 1 ci sia 5, in posizione 2 ci sia 4 e in posizione 3 ci sia 2.
+     * TEST DESCRIPTION: Aggiungo 3 elementi 1, 2, 3. Creo una collection c e aggiungo 4,5,6.
+     * Richiamo il metodo subList(1,2) che restituisce un oggetto di tipo HList che chiamo subList.
+     * Richiamo il metodo addAll(c) che aggiunge tutti gli elementi di c nella subList e verifico che sia avvenuta la modifica. 
+     * Verifico che in ultima posizione di subList sia presente 6. Inoltre verifico che in ultima posizione di list sia presente 3 e che in seconda posizione ci sia 4.
      * 
      * PRECONDITION: esistenza di una list vuota.
      * 
-     * POSTCONDITION: list con 5 elementi(1,5,4,2,3) e subList con 3 elementi (1,5,4)
+     * POSTCONDITION: list con 6 elementi(1,2,4,5,6,3) e subList con 4 elementi (2,4,5,6)
      * 
-     * EXPECTED RESULTS: 5,5,4,2
+     * EXPECTED RESULTS: true, 6, 3, 4.
      */
     @Test
     public void SubListAddAll() {
@@ -1233,17 +1234,19 @@ public class ListAdapterTest {
         assertEquals(4, list.get(2));
     }
     
-    //TODO: da visionare
+    //TODO: da visionare- Tess visto 
     /**
-     * SUMMARY: Test che verifica il funzionamento del metodo addAll() sub . 
+     * SUMMARY: Test che verifica il funzionamento del metodo 'public boolean addAll(int index, HCollection c)'. 
      * 
-     * TEST DESIGN: verficiare il metodo addAll() di sub, creo una collection e la  carico in sub .
+     * TEST DESIGN: Test che verfica il metodo addAll() di sub, creo una collection e la  carico in sub mi aspetto errore.
      * 
-     * TEST DESCRIPTION: Creo una lista, riempio,creo un collection, riempio,creo sub list, eseguo addAll 
+     * TEST DESCRIPTION: Creo una lista, aggiungo 4 elementi (1,2,3,4), creo un collection c e aggiungo 5,6,7. Creo subList contenente elementi 2 e 3.
+     * Eseguo addAll e aggiungo alla subList a partire dalla posizione 1 tutti gli elementi di c. Verifico sia avvenuta l'aggiunta.
+     * Infine verifico che in ultima posizione della subList sia presente il valore 
      * 
      * PRECONDITION: esistenza di una list vuota.
      * 
-     * POSTCONDITION: list con 7 elementi(1,2,5,6,7,3,4) sub (2,5,6,7,3)
+     * POSTCONDITION: errore, lista invariata 
      * 
      * EXPECTED RESULTS: sopra
      */
@@ -1322,23 +1325,19 @@ otos m
         assertEquals(2, list.size());
     }
 
-    //TODO: da visionare  - Tess visto
+    //TODO: da visionare - Tess Visto
     /**
-     * SUMMARY: Test che verifica il funzionamento del metodo subList() di ListAdapter che crea una sottolista di una list principale precedentemente creata. 
+     * SUMMARY: verifica contains sub list. 
      * 
-     * TEST DESIGN: Test che dopo aver aggiunto 4 elementi ad una list, verifica il funzionamento
-     * del metodo subList() che crea una sottolista di capacità minore ma che possiede nelle relative posizioni gli stessi elementi 
-     * della lista principale. Verifico quindi che aggiungendo elementi alla subList, la modifica avvenga pure all'interno della list principale.
+     * TEST DESIGN: lista piena, faccio sub list, verificare se contiene lista vuota.
      * 
-     * TEST DESCRIPTION: Creo una list di tipo ListAdapter, aggiungo 4 elementi 1, 2, 3,4.
-     * Richiamo il metodo subList(0,2) che restituisce un oggetto di tipo HList che chiamo subList.
-     * Eseguo il clear, verifico dimensione sub == 0  e dimensione lista = dimensione lista originale - dim sub tolta 
+     * TEST DESCRIPTION: creo lista,riempio, faccio sub,verifico contenga elemento uno
      * 
      * PRECONDITION: esistenza di una list vuota.
      * 
-     * POSTCONDITION: list con 5 elementi(1,5,4,2,3) e subList con 3 elementi (1,5,4)
+     * POSTCONDITION: esistenza della lista
      * 
-     * EXPECTED RESULTS: 5,5,4,2
+     * EXPECTED RESULTS: true
      */
     @Test
     public void SubListContains() {
@@ -1350,23 +1349,19 @@ otos m
     }
 
 
-    //TODO: da visionare
+    //TODO: da visionare - Tess Visto
     /**
-     * SUMMARY: Test che verifica il funzionamento del metodo subList() di ListAdapter che crea una sottolista di una list principale precedentemente creata. 
+     * SUMMARY: verifica containsAll sub list. 
      * 
-     * TEST DESIGN: Test che dopo aver aggiunto 4 elementi ad una list, verifica il funzionamento
-     * del metodo subList() che crea una sottolista di capacità minore ma che possiede nelle relative posizioni gli stessi elementi 
-     * della lista principale. Verifico quindi che aggiungendo elementi alla subList, la modifica avvenga pure all'interno della list principale.
+     * TEST DESIGN: lista piena, faccio sub list, verificare se contiene collection.
      * 
-     * TEST DESCRIPTION: Creo una list di tipo ListAdapter, aggiungo 4 elementi 1, 2, 3,4.
-     * Richiamo il metodo subList(0,2) che restituisce un oggetto di tipo HList che chiamo subList.
-     * Eseguo il clear, verifico dimensione sub == 0  e dimensione lista = dimensione lista originale - dim sub tolta 
+     * TEST DESCRIPTION: creo lista,riempio, faccio sub, creo collection, rimepio, verifico contenga tutto, poi aggiungo un elemento e riverifico  
      * 
      * PRECONDITION: esistenza di una list vuota.
      * 
-     * POSTCONDITION: list con 5 elementi(1,5,4,2,3) e subList con 3 elementi (1,5,4)
+     * POSTCONDITION: esistenza della lista
      * 
-     * EXPECTED RESULTS: 5,5,4,2
+     * EXPECTED RESULTS: true - false
      */
     @Test
     public void SubListContainsAll() {
@@ -1386,23 +1381,19 @@ otos m
         assertFalse(subList.containsAll(c));
     }
     
-    //TODO: da visionare
+    //TODO: da visionare - Tess Visto
     /**
-     * SUMMARY: Test che verifica il funzionamento del metodo subList() di ListAdapter che crea una sottolista di una list principale precedentemente creata. 
+     * SUMMARY: verifica containsAll sub list. 
      * 
-     * TEST DESIGN: Test che dopo aver aggiunto 4 elementi ad una list, verifica il funzionamento
-     * del metodo subList() che crea una sottolista di capacità minore ma che possiede nelle relative posizioni gli stessi elementi 
-     * della lista principale. Verifico quindi che aggiungendo elementi alla subList, la modifica avvenga pure all'interno della list principale.
+     * TEST DESIGN: lista piena, faccio sub list, verificare se contiene lista vuota.
      * 
-     * TEST DESCRIPTION: Creo una list di tipo ListAdapter, aggiungo 4 elementi 1, 2, 3,4.
-     * Richiamo il metodo subList(0,2) che restituisce un oggetto di tipo HList che chiamo subList.
-     * Eseguo il clear, verifico dimensione sub == 0  e dimensione lista = dimensione lista originale - dim sub tolta 
+     * TEST DESCRIPTION: creo lista,riempio, faccio sub, creo collection ma punta a null, errore   
      * 
      * PRECONDITION: esistenza di una list vuota.
      * 
-     * POSTCONDITION: list con 5 elementi(1,5,4,2,3) e subList con 3 elementi (1,5,4)
+     * POSTCONDITION: esistenza della lista
      * 
-     * EXPECTED RESULTS: 5,5,4,2
+     * EXPECTED RESULTS: errore 
      */
     @Test(expected = NullPointerException.class)
     public void SubListContainsAllCollectionNullPointerException() {
@@ -1415,6 +1406,20 @@ otos m
         assertTrue(subList.containsAll(c));
     }
 
+    //TODO: da visionare - Tess Visto
+    /**
+     * SUMMARY: verifica containsAll sub list. 
+     * 
+     * TEST DESIGN: lista piena, faccio sub list, verificare se contiene lista vuota.
+     * 
+     * TEST DESCRIPTION: creo lista,riempio, faccio sub, creo collection con solo un elemento null, aspetto errore perchè accedo a elemento uguale a null  
+     * 
+     * PRECONDITION: esistenza di una list vuota.
+     * 
+     * POSTCONDITION: esistenza della lista
+     * 
+     * EXPECTED RESULTS: errore 
+     */
     @Test(expected = NullPointerException.class)
     public void SubListContainsAllElementNullPointerException() {
         list.add(1);
@@ -1427,7 +1432,20 @@ otos m
         assertTrue(subList.containsAll(c));
     }
 
-
+    //TODO: da visionare - Tess Visto
+    /**
+     * SUMMARY: verifica get sub list. 
+     * 
+     * TEST DESIGN: lista piena, faccio sub list, eseguo il get su un elemento .
+     * 
+     * TEST DESCRIPTION: creo lista,riempio, faccio sub, esguo get 
+     * 
+     * PRECONDITION: esistenza di una list vuota.
+     * 
+     * POSTCONDITION: esistenza lista e sub list
+     * 
+     * EXPECTED RESULTS: 3 
+     */
     @Test
     public void SubListGet() {
         list.add(1);
@@ -1440,25 +1458,45 @@ otos m
 
         assertEquals(3, subList.get(subList.size() - 1));
     }
-
+    
+    //TODO: da visionare - Tess Visto
+    /**
+     * SUMMARY: verifica get sub list. 
+     * 
+     * TEST DESIGN: lista piena, faccio sub list, eseguo il get su un elemento .
+     * 
+     * TEST DESCRIPTION: creo lista,riempio, faccio sub, esguo get, aspetto errore perchè accedo ad elemento fuori  
+     * 
+     * PRECONDITION: esistenza di una list vuota.
+     * 
+     * POSTCONDITION: esistenza lista e sub list
+     * 
+     * EXPECTED RESULTS: errore 
+     */
     @Test(expected = IndexOutOfBoundsException.class)
     public void SubListGetIndexOutOfBoundsException() {
         list.add(1);
         HList subList = list.subList(0, list.size());
-        assertEquals(1, subList.get(subList.size()));
-    }
-
-    @Test(expected = IndexOutOfBoundsException.class)
-    public void SubListGetIndexOutOfBoundsExceptionSubList() {
-        list.add(1);
-        HList subList = list.subList(0, list.size());
 
         assertEquals(1, subList.get(subList.size()));
     }
 
-
+    //TODO: da visionare - Tess visto
+    /**
+     * SUMMARY: Tverifica set sub list. 
+     * 
+     * TEST DESIGN: lista piena, faccio sub list, eseguo il set su un elemento .
+     * 
+     * TEST DESCRIPTION: creo lista,riempio, faccio sub, esguo set, verifico se l'elemto 0 è cambiato 
+     * 
+     * PRECONDITION: esistenza di una list vuota.
+     * 
+     * POSTCONDITION: esistenza lista e sub list
+     * 
+     * EXPECTED RESULTS: list = 1,6,3, 4,5  sub 6,3
+     */
     @Test
-    public void testSetSubList() {
+    public void SubListSet() {
         list.add(1);
         list.add(2);
         list.add(3);

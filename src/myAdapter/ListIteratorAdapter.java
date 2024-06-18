@@ -96,7 +96,7 @@ public class ListIteratorAdapter implements HListIterator
         return (index -1);
     }
 
-    public void set(Object o){ //TODO decidere
+    public void set(Object o){
         l.set(index,o);
     }
     

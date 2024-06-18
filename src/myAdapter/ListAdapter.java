@@ -234,21 +234,6 @@ public class ListAdapter implements HList {
         return sub;
     }
 
-    /*
-     * public HList subList(int fromIndex, int toIndex) {
-     * if (fromIndex < 0 || toIndex > v.size() || fromIndex > toIndex) {
-     * throw new IndexOutOfBoundsException();
-     * }
-     * ListAdapter sub = new ListAdapter();
-     * for (int i = fromIndex; i < toIndex; i++) {
-     * sub.add(get(i));
-     * }
-     * if(fromIndex == toIndex){
-     * return sub;
-     * }
-     * return sub;
-     * }
-     */
 
     /*
      * Helper methods
@@ -291,21 +276,21 @@ public class ListAdapter implements HList {
          * Override HColletion
          */
         @Override
-        public boolean add(Object o) { // TODO Done
+        public boolean add(Object o) {
             list.add(max, o);
             max++;
             return true;
         }
 
         @Override
-        public void clear() { // TODO done
+        public void clear() {
             for (int i = max-1; i >= min; i--) {
                 remove(i);
             }
         }
 
         @Override
-        public boolean contains(Object o) { // TODO done
+        public boolean contains(Object o) {
             excNullPtrCast(o);
             for (int i = min; i < max; i++) {
                 if (get(i).equals(o)) {
@@ -408,7 +393,7 @@ public class ListAdapter implements HList {
          * Implement HList
          */
         @Override
-        public void add(int index, Object element) { // TODO done
+        public void add(int index, Object element) {
             if (check(index)) {
                 list.add(min + index, element);
                 max++;
@@ -416,7 +401,7 @@ public class ListAdapter implements HList {
         }
 
         @Override
-        public boolean addAll(int index, HCollection c) { // TODO done
+        public boolean addAll(int index, HCollection c) {
             check(index);
             if (c == null) {
                 throw new NullPointerException();
@@ -429,7 +414,7 @@ public class ListAdapter implements HList {
         }
 
         @Override
-        public Object get(int index) { // TODO done
+        public Object get(int index) {
             check(index);
             return list.get(min + index);
         }
@@ -448,7 +433,7 @@ public class ListAdapter implements HList {
         }
 
         @Override
-        public int lastIndexOf(Object o) { // TODO done
+        public int lastIndexOf(Object o) {
             excNullPtrCast(o);
             int index = -1;
             Object[] items = toArray();
@@ -461,12 +446,12 @@ public class ListAdapter implements HList {
         }
 
         @Override
-        public HListIterator listIterator() { // TODO done
+        public HListIterator listIterator() {
             return it;
         }
 
         @Override
-        public HListIterator listIterator(int index) { // TODO done
+        public HListIterator listIterator(int index) {
             if (check(index)) {
                 throw new IndexOutOfBoundsException();
             }
@@ -474,7 +459,7 @@ public class ListAdapter implements HList {
         }
 
         @Override
-        public Object remove(int index) {// TODO done
+        public Object remove(int index) {
             check(index);
             Object o = get(index);
             list.remove(min + index);
@@ -483,7 +468,7 @@ public class ListAdapter implements HList {
         }
 
         @Override
-        public Object set(int index, Object element) {// TODO done
+        public Object set(int index, Object element) {
             excNullPtrCast(element);
             Object o = get(index);
             list.set(min + index, element);
