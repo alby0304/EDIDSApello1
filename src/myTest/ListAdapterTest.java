@@ -5,7 +5,6 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-import java.util.NoSuchElementException;
 
 public class ListAdapterTest {
 
@@ -30,7 +29,7 @@ public class ListAdapterTest {
     * 
     * POSTCONDITION: lista con un elemento aggiunto.
     * 
-    * EXPECTED RESULTS: int add
+    * EXPECTED RESULTS: add
     */
     @Test
     public void add() {
@@ -305,13 +304,12 @@ public class ListAdapterTest {
         list.addAll(0, null);
     }
 
-    //TODO: da visionare
     /**
      * SUMMARY: Test che valuta il funzionamento del metodo 'public boolean addAll(int index, HCollection c)' 
      * che dovrebbe lanciare un'eccezione
      * 
      * TEST DESIGN: Test che in seguito alla creazione di una HCollection e all'invocazione di due metodi add() e del metodo addAll(-1,c)
-     * lancia una eccezione 
+     * lancia una eccezione passando come parametro un indice negativo
      * 
      * TEST DESCRIPTION: Creo una collezione che inizializzo 
      * 
@@ -676,23 +674,22 @@ public class ListAdapterTest {
         assertEquals(false, list.isEmpty());
     }
 
-    
     /**
     * SUMMARY: Test che verifica il funzionamento del metodo 'public HIterator iterator()' di ListAdapter.
     * 
-    * TEST DESIGN: 
+    * TEST DESIGN: Test che verifica che uguaglianza tra due iterator 
     * 
-    * TEST DESCRIPTION: 
+    * TEST DESCRIPTION: Viene istanziato un nuovo iteratore tramite il metodo iterator, verifico che il riferimento ritornato sia uguale all'iterator
+    * effettivamente associato alla lista
     * 
     * PRECONDITION: esistenza di una list vuota.
     * 
-    * POSTCONDITION:
+    * POSTCONDITION: esistenza della lista e dell'iterator 
     * 
     * EXPECTED RESULTS: it
     */
     @Test
     public void iterator() {
-        final int add = 1;
         
         HIterator it = list.iterator();
         assertEquals(it, list.iterator());
@@ -743,23 +740,22 @@ public class ListAdapterTest {
         assertEquals(0, list.lastIndexOf(null));
     }
 
-    
     /**
-    * SUMMARY: 
+    * SUMMARY: Test che verifica il funzionamento del metodo 'public HListIterator listIterator()' di ListAdapter.
     * 
-    * TEST DESIGN: 
+    * TEST DESIGN: Test che verifica che uguaglianza tra due iterator 
     * 
-    * TEST DESCRIPTION:
+    * TEST DESCRIPTION:Viene istanziato un nuovo iteratore di tipo listiterator tramite il metodo listiterator, verifico che il riferimento ritornato sia uguale all'iterator
+    * effettivamente associato alla lista
     * 
     * PRECONDITION: esistenza di una list vuota.
     * 
-    * POSTCONDITION
+    * POSTCONDITION esistenza della lista e dell iteratore
     * 
     * EXPECTED RESULTS: it
     */
     @Test
     public void ListIterator() {
-        final int add = 1;
         
         HListIterator it = list.listIterator();
         assertEquals(it, list.iterator());
@@ -767,17 +763,18 @@ public class ListAdapterTest {
 
     
     /**
-    * SUMMARY: Test che verifica 
+    * SUMMARY: Test che verifica il funzionamento del metodo 'public HListIterator listIterator(int inde)' di ListAdapter.
     * 
-    * TEST DESIGN: 
+    * TEST DESIGN: Test che per verificare il funzionamento confronta deu numeri puntati dagli iterator 
     * 
-    * TEST DESCRIPTION:
+    * TEST DESCRIPTION:Viene istanziato un nuovo iteratore di tipo listiterator tramite il metodo listiterator impostato ad un index specifico, verifico che il riferimento ritornato sia uguale all'iterator
+    * effettivamente associato alla lista
     * 
     * PRECONDITION: esistenza di una list vuota.
     * 
-    * POSTCONDITION
+    * POSTCONDITION esistenza della lista e dell iteratore
     * 
-    * EXPECTED RESULTS: add
+    * EXPECTED RESULTS: 1
     */
     @Test
     public void ListIteratorIndex() {
@@ -1004,7 +1001,7 @@ public class ListAdapterTest {
     }
 
 
-    
+
     
     /**
      * SUMMARY: Test che valuta il funzionamento del metodo toArray() di ListAdapter.
@@ -1018,7 +1015,7 @@ public class ListAdapterTest {
      * 
      * POSTCONDITION: list e array con 3 elementi (1,2,3)
      * 
-     * EXPECTED RESULTS: 
+     * EXPECTED RESULTS: true,true,true, 0 = 0 , 1 = 1; 2 = 2 ;
      */
     @Test
     public void toArray() {
@@ -1233,22 +1230,24 @@ public class ListAdapterTest {
         assertEquals(3, list.get(list.size()-1));
         assertEquals(4, list.get(2));
     }
-    
-    //TODO: da visionare- Tess visto 
+     
     /**
-     * SUMMARY: Test che verifica il funzionamento del metodo 'public boolean addAll(int index, HCollection c)'. 
+     * SUMMARY: Test che verifica il funzionamento del metodo 'public boolean addAll(int index, HCollection c)' di ListAdapter 
+     * e in particolare l'aggiunta di elementi nella posizione specificata come parametro. 
      * 
-     * TEST DESIGN: Test che verfica il metodo addAll() di sub, creo una collection e la  carico in sub mi aspetto errore.
+     * TEST DESIGN: Test che creando una subList e aggiungendo degli elementi in una specifica posizione verifica:
+     * 1)che l'aggiunta sia effettivamente avvenuta
+     * 2)che gli ultimi elementi della lista e della subList siano quelli aspettati.
      * 
      * TEST DESCRIPTION: Creo una lista, aggiungo 4 elementi (1,2,3,4), creo un collection c e aggiungo 5,6,7. Creo subList contenente elementi 2 e 3.
      * Eseguo addAll e aggiungo alla subList a partire dalla posizione 1 tutti gli elementi di c. Verifico sia avvenuta l'aggiunta.
-     * Infine verifico che in ultima posizione della subList sia presente il valore 
+     * Infine verifico che in ultima posizione della subList sia presente il valore 3 e che in ultima posizione di list ci sia 4.
      * 
      * PRECONDITION: esistenza di una list vuota.
      * 
-     * POSTCONDITION: errore, lista invariata 
+     * POSTCONDITION: subList con 5 elementi (2,5,6,7,3) e list con 7 elementi (1,2,5,6,7,3,4).
      * 
-     * EXPECTED RESULTS: sopra
+     * EXPECTED RESULTS: true, 3, 4.
      */
     @Test
     public void SubListAddAllAtIndex() {
@@ -1268,19 +1267,23 @@ public class ListAdapterTest {
         assertEquals(4, list.get(list.size()-1));
     }
 
-    //TODO: da visionare- Tess visto 
+    
     /**
-     * SUMMARY: Test che verifica il funzionamento del metodo addAll() sub . 
+     * SUMMARY: Test che verifica il funzionamento del metodo 'public boolean addAll(int index, HCollection c)' di ListAdapter, 
+     * in particolare il lancio di un'eccezione nel caso vengano aggiunti elementi a partire da un indice non valido. 
      * 
-     * TEST DESIGN: verficiare il metodo addAll() di sub, creo una collection e la  carico in sub mi aspetto errore.
+     * TEST DESIGN: Test che verifica che dopo aver aggiunto degli elementi a una lista, aver creato e caricato una collezione con tre elementi in subList, 
+     * venga lanciata un'eccezione a causa di un indice di partenza negativo.
      * 
-     * TEST DESCRIPTION: Creo una lista, riempio,creo un collection, riempio,creo sub list, eseguo addAll verifico errore 
+     * TEST DESCRIPTION: Aggiungo 3 elementi (1,2,3), creo un collection c e aggiungo 4,5,6. Creo subList contenente 1.
+     * Eseguo addAll e aggiungo alla subList a partire dalla posizione -1 tutti gli elementi di c. Verifico che venga lanciata un'eccezione
+     * IndexOutOfBoundsException.
      * 
      * PRECONDITION: esistenza di una list vuota.
      * 
-     * POSTCONDITION: errore, lista invariata 
+     * POSTCONDITION: lista invariata e 
      * 
-     * EXPECTED RESULTS: sopra
+     * EXPECTED RESULTS: IndexOutOfBoundsException
      */
     @Test(expected = IndexOutOfBoundsException.class)
     public void SubListAddAllAtIndexIndexOutOfBoundsException() {
@@ -1297,20 +1300,21 @@ public class ListAdapterTest {
         assertTrue(subList.addAll(-1, c));
     }
     
-    //TODO: da visionare-Tess visto
+    
     /**
-     * SUMMARY: Test che verifica il funzionamento del metodo clear() sub . 
+     * SUMMARY: Test che verifica il funzionamento del metodo 'public void clear()' sulla subList e eventuali conseguenze sulla lista principale. 
      * 
-     * TEST DESIGN: verficiare il metodo clear() di sub.
+     * TEST DESIGN: Test che dopo aver aggiunto degli elementi ad una lista ed inizializzato una subList 
+     * con alcuni dei suoi elementi verifica che con l'invocazione di clear la subList venga svuotata e gli stessi elementi vengano rimossi anche dall lista principale.
      * 
-     * TEST DESCRIPTION: Creo lista ,riempio, creo sub,verifico che la sub sia vuota e che la dim della lista sia diminuita 
+     * TEST DESCRIPTION: Aggiungo 4 elementi (1,2,3,4). Creo subList contenente 1 e 2.
+     * Eseguo clear() e verifico che la subList risulti vuota. Inoltre verifico che list abbia 2 elementi
      * 
      * PRECONDITION: esistenza di una list vuota.
      * 
-     * POSTCONDITION: lista esistente 
+     * POSTCONDITION: list con 2 elementi (3,4).
      * 
-     * EXPECTED RESULTS: dim list = 2, d
-otos m
+     * EXPECTED RESULTS: 0,2
      */
     @Test
     public void SubListClear() {
@@ -1325,17 +1329,17 @@ otos m
         assertEquals(2, list.size());
     }
 
-    //TODO: da visionare - Tess Visto
     /**
-     * SUMMARY: verifica contains sub list. 
+     * SUMMARY: Test che verifica il funzionamento del metodo 'public boolean contains(Object o)' di ListAdapter. 
      * 
-     * TEST DESIGN: lista piena, faccio sub list, verificare se contiene lista vuota.
+     * TEST DESIGN: Test che aggiunge tre elementi ad una lista, inizializza una subList con alcuni dei suoi elementi 
+     * e verifica che questi siano effettivamente presenti
      * 
-     * TEST DESCRIPTION: creo lista,riempio, faccio sub,verifico contenga elemento uno
+     * TEST DESCRIPTION: Aggiungo a list 3 elementi 1,2,3. Creo subList contenente 1 e verifico la sua effettiva presenza all'interno della sottolista.
      * 
      * PRECONDITION: esistenza di una list vuota.
      * 
-     * POSTCONDITION: esistenza della lista
+     * POSTCONDITION: list con 3 elementi (1,2,3) e subList con 1 elemento (1).
      * 
      * EXPECTED RESULTS: true
      */
@@ -1349,19 +1353,21 @@ otos m
     }
 
 
-    //TODO: da visionare - Tess Visto
     /**
-     * SUMMARY: verifica containsAll sub list. 
+     * SUMMARY: Test che verifica il corretto funzionamento del metodo 'public boolean containsAll(HCollection c)' di ListAdapter confrontando la subList con una collec. 
      * 
-     * TEST DESIGN: lista piena, faccio sub list, verificare se contiene collection.
+     * TEST DESIGN: Test che aggiunge 4 elementi ad una lista, inizializza una subList con alcuni dei suoi elementi e verifica che la sublist contenga tutti gli elementi della collection creata,
+     * poi aggiungo un elemento alla collection e verifico che restituisca false poiché la subList non contiene tutti gli elementi della collection.
      * 
-     * TEST DESCRIPTION: creo lista,riempio, faccio sub, creo collection, rimepio, verifico contenga tutto, poi aggiungo un elemento e riverifico  
+     * 
+     * TEST DESCRIPTION: Aggiungo 4 elementi (1,2,3,4). Creo una collection c e aggiungo 1,2,3. Creo una subList contenente 1,2,3 e verifico che contenga tutti gli   
+     * Aggiungo 4 a c e ripeto la verifica.
      * 
      * PRECONDITION: esistenza di una list vuota.
      * 
-     * POSTCONDITION: esistenza della lista
+     * POSTCONDITION: list con 4 elementi (1,2,3,4) sublist con 3 elementi (1,2,3)
      * 
-     * EXPECTED RESULTS: true - false
+     * EXPECTED RESULTS: true nel primo test, false nel secondo test
      */
     @Test
     public void SubListContainsAll() {
@@ -1381,19 +1387,20 @@ otos m
         assertFalse(subList.containsAll(c));
     }
     
-    //TODO: da visionare - Tess Visto
+
     /**
-     * SUMMARY: verifica containsAll sub list. 
+     * SUMMARY: Test che verifica il corretto funzionamento del metodo 'public boolean containsAll(HCollection c)' di ListAdapter passando come parametro una collection null.
      * 
-     * TEST DESIGN: lista piena, faccio sub list, verificare se contiene lista vuota.
+     * TEST DESIGN: Test che verifica che venga lanciata un'eccezione nel caso in cui la collection passata come parametro sia nulla.
      * 
-     * TEST DESCRIPTION: creo lista,riempio, faccio sub, creo collection ma punta a null, errore   
+     * TEST DESCRIPTION: Aggiungo 2 elementi (1,2). Creo una collection c inizializzata a null. Creo una subList contenente 1,2
+     * invoco il metoddo containsAll attendendo il lancio di NullPointerException
      * 
      * PRECONDITION: esistenza di una list vuota.
      * 
-     * POSTCONDITION: esistenza della lista
+     * POSTCONDITION: lancio di una eccezione 
      * 
-     * EXPECTED RESULTS: errore 
+     * EXPECTED RESULTS: NullPointerException
      */
     @Test(expected = NullPointerException.class)
     public void SubListContainsAllCollectionNullPointerException() {
@@ -1406,19 +1413,20 @@ otos m
         assertTrue(subList.containsAll(c));
     }
 
-    //TODO: da visionare - Tess Visto
+    
     /**
-     * SUMMARY: verifica containsAll sub list. 
+     * SUMMARY: Test che verifica il funzionamento del metodo 'public boolean containsAll(HCollection c)' di ListAdapter 
      * 
-     * TEST DESIGN: lista piena, faccio sub list, verificare se contiene lista vuota.
+     * TEST DESIGN: Test che verifica che venga lanciata un'eccezione nel caso in cui la collection passata come parametro contenga un elemento null.
      * 
-     * TEST DESCRIPTION: creo lista,riempio, faccio sub, creo collection con solo un elemento null, aspetto errore perchè accedo a elemento uguale a null  
+     * TEST DESCRIPTION: Aggiungo 1 alla list. Creo una subList contenente 1 e una collection c alla quale aggiungo 1,null,3. 
+     * Verifico che la presenza di null tra gli elementi di c provochi il lancio di un'eccezione NullPointerException.
      * 
      * PRECONDITION: esistenza di una list vuota.
      * 
-     * POSTCONDITION: esistenza della lista
+     * POSTCONDITION: lancio di un'eccezione 
      * 
-     * EXPECTED RESULTS: errore 
+     * EXPECTED RESULTS: NullPointerException
      */
     @Test(expected = NullPointerException.class)
     public void SubListContainsAllElementNullPointerException() {
@@ -1432,17 +1440,16 @@ otos m
         assertTrue(subList.containsAll(c));
     }
 
-    //TODO: da visionare - Tess Visto
     /**
-     * SUMMARY: verifica get sub list. 
+     * SUMMARY: Test che verifica il corretto funzionamento del metodo 'public Object get(int index)' di ListAdapter per una subList.
      * 
-     * TEST DESIGN: lista piena, faccio sub list, eseguo il get su un elemento .
+     * TEST DESIGN: Test che verifica che il metodo get() restituisca l'elemento corretto. 
      * 
-     * TEST DESCRIPTION: creo lista,riempio, faccio sub, esguo get 
+     * TEST DESCRIPTION: Aggiungo 5 elementi (1,2,3,4,5) alla list. Creo una subList contenente elementi 2,3 e verifico che come ultimo elemento abbia 3.
      * 
      * PRECONDITION: esistenza di una list vuota.
      * 
-     * POSTCONDITION: esistenza lista e sub list
+     * POSTCONDITION: lista con 5 elementi, subList con 2 elementi.
      * 
      * EXPECTED RESULTS: 3 
      */
@@ -1459,19 +1466,21 @@ otos m
         assertEquals(3, subList.get(subList.size() - 1));
     }
     
-    //TODO: da visionare - Tess Visto
+
     /**
-     * SUMMARY: verifica get sub list. 
+     * SUMMARY: Test che verifica il funzionamento del metodo 'public Object get(int index)' di ListAdapter per una subList passandogli un indice non valido. 
      * 
-     * TEST DESIGN: lista piena, faccio sub list, eseguo il get su un elemento .
+     * TEST DESIGN: Test che verifica che venga lanciata un'eccezione nel caso in cui si cerchi di accedere ad un elemento fuori dalla subList.
+     * lista piena, faccio sub list, eseguo il get su un elemento .
      * 
-     * TEST DESCRIPTION: creo lista,riempio, faccio sub, esguo get, aspetto errore perchè accedo ad elemento fuori  
+     * TEST DESCRIPTION: aggiungo 1 alla list, creo subList contenente 1 e verifico che in seguito alla chiamata di get(), passandogli subList.size(), 
+     * venga lanciata eccezione IndexOutOfBoundsException.
      * 
      * PRECONDITION: esistenza di una list vuota.
      * 
-     * POSTCONDITION: esistenza lista e sub list
+     * POSTCONDITION: list e subList con 1 elemento.
      * 
-     * EXPECTED RESULTS: errore 
+     * EXPECTED RESULTS: IndexOutOfBoundsException
      */
     @Test(expected = IndexOutOfBoundsException.class)
     public void SubListGetIndexOutOfBoundsException() {
@@ -1481,19 +1490,19 @@ otos m
         assertEquals(1, subList.get(subList.size()));
     }
 
-    //TODO: da visionare - Tess visto
     /**
-     * SUMMARY: Tverifica set sub list. 
+     * SUMMARY: Test che verifica il corretto funzionamento del metodo 'public Object get(int index)' di ListAdapter per una subList.
      * 
-     * TEST DESIGN: lista piena, faccio sub list, eseguo il set su un elemento .
+     * TEST DESIGN: Test che verifica che il metodo set()  modifichi correttamente l'elemento in posizione specificata.
      * 
-     * TEST DESCRIPTION: creo lista,riempio, faccio sub, esguo set, verifico se l'elemto 0 è cambiato 
+     * TEST DESCRIPTION: Aggiungo 5 elementi (1,2,3,4,5) alla list. Creo una subList contenente elementi 2,3 e eseguo il metodo set() passandogli come parametro 6 
+     * da sostituire all'elemento in prima posizione. Verifico che come primo elemento abbia 6 e verifico che la list abbia 6 in posizione 1.
      * 
      * PRECONDITION: esistenza di una list vuota.
      * 
-     * POSTCONDITION: esistenza lista e sub list
+     * POSTCONDITION: list con 5 elementi (1,6,3,4,5) e subList con 2 elementi (6,3).
      * 
-     * EXPECTED RESULTS: list = 1,6,3, 4,5  sub 6,3
+     * EXPECTED RESULTS: 6,6
      */
     @Test
     public void SubListSet() {
@@ -1509,5 +1518,6 @@ otos m
         assertEquals(6, subList.get(0));
         assertEquals(6, list.get(1));
     }
+
 }
 

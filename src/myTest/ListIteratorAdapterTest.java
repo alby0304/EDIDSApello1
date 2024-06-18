@@ -1,6 +1,5 @@
 package myTest;
 
-import java.util.ListIterator;
 import java.util.NoSuchElementException;
 
 import myAdapter.*;

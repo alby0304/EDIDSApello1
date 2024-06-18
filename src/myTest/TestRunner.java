@@ -13,9 +13,6 @@ import org.junit.runners.Suite;
 })
 public class TestRunner {
     
-    /** 
-     * @param args
-     */
     public static void main(String[] args) {
         Result result = JUnitCore.runClasses(ListAdapterTest.class, ListIteratorAdapterTest.class );
         for (Failure failure : result.getFailures()) {
